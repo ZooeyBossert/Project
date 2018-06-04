@@ -16,3 +16,6 @@ nearby you will get a notification. When going to the playlist you can see which
 ## Prerequisites
 For the music the API of Soundcloud can be used (maybe also the YouTube API). For saving the song Firebase will be used. How to connect 
 the phones, I am still figuring out.
+
+## Example Sketch
+![](doc/Example.jpg)
