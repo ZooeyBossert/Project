@@ -18,4 +18,4 @@ For the music the API of Soundcloud can be used (maybe also the YouTube API). Fo
 the phones, I am still figuring out.
 
 ## Example Sketch
-![](doc/Example Sketch.paint)
+![](doc/designdoc.png)
