@@ -2,28 +2,28 @@
 
 ## Files
 
-# MusicTableViewController
+### MusicTableViewController
 •	Items:
 •	Functions:
 -	updateUI()
 -	prepare()
 -	tableView()
 
-# SettingsViewController
+### SettingsViewController
 •	Items:
 •	Functions:
 
-# SearchViewController
-•	Items:
-•	Functions:
--	prepare()
-
-# ConnectionsViewController
+### SearchViewController
 •	Items:
 •	Functions:
 -	prepare()
 
-# MusicItem
+### ConnectionsViewController
+•	Items:
+•	Functions:
+-	prepare()
+
+### MusicItem
 •	Struct:
 - name
 - artist 
