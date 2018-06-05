@@ -3,30 +3,38 @@
 ## Files
 
 ### MusicTableViewController
-•	Items:
-•	Functions:
+Functions:
 -	updateUI()
+- playMusic()
 -	prepare()
 -	tableView()
 
 ### SettingsViewController
-•	Items:
-•	Functions:
+Functions:
+- account()
+- name()
+- notifications()
+- updateUI()
 
 ### SearchViewController
-•	Items:
-•	Functions:
+Functions:
 -	prepare()
 
 ### ConnectionsViewController
-•	Items:
+Items:
 •	Functions:
--	prepare()
+-	updateUI()
 
 ### MusicItem
-•	Struct:
+Struct:
 - name
 - artist 
 - album
 - year
+- ID
+
+## Firebase
+- Name
+- ID
+- Playlist
 
