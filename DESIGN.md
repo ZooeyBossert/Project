@@ -38,3 +38,7 @@ Struct:
 - ID
 - Playlist
 
+## Design
+
+![](doc/designSketch.png)
+
