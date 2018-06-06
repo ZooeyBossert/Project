@@ -13,12 +13,7 @@
 
 • ConnectionsViewController
 
-• MusicItem:
-- name
-- artist 
-- album
-- year
-- ID
+• MusicItem: name, artist, album, year, ID
 
 ### Functions
 -	updateUI()
