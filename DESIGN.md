@@ -4,10 +4,15 @@
 
 ### Classes
 • MusicTableViewController
+
 • SettingsViewController
+
 • SearchViewController
+
 • ConnectionsViewController
+
 • ConnectionsViewController
+
 • MusicItem:
 - name
 - artist 
