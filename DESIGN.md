@@ -11,8 +11,6 @@
 
 • ConnectionsViewController
 
-• ConnectionsViewController
-
 • MusicItem: name, artist, album, year, ID
 
 ### Functions
