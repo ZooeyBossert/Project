@@ -25,6 +25,9 @@
 		63D7A76820C94FF80010B798 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63D7A76720C94FF80010B798 /* AVFoundation.framework */; };
 		63D7A76A20C9500E0010B798 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63D7A76920C9500E0010B798 /* UIKit.framework */; };
 		63D7A76C20C950190010B798 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63D7A76B20C950190010B798 /* Foundation.framework */; };
+		63D7A76F20C96C740010B798 /* SpotifyAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63D7A76D20C96C730010B798 /* SpotifyAuthentication.framework */; };
+		63D7A77020C96C740010B798 /* SpotifyAudioPlayback.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63D7A76E20C96C740010B798 /* SpotifyAudioPlayback.framework */; };
+		63D7A77220C96CED0010B798 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63D7A77120C96CED0010B798 /* SystemConfiguration.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +72,9 @@
 		63D7A76720C94FF80010B798 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		63D7A76920C9500E0010B798 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		63D7A76B20C950190010B798 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		63D7A76D20C96C730010B798 /* SpotifyAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpotifyAuthentication.framework; path = "../../Downloads/ios-sdk-beta-25/SpotifyAuthentication.framework"; sourceTree = "<group>"; };
+		63D7A76E20C96C740010B798 /* SpotifyAudioPlayback.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpotifyAudioPlayback.framework; path = "../../Downloads/ios-sdk-beta-25/SpotifyAudioPlayback.framework"; sourceTree = "<group>"; };
+		63D7A77120C96CED0010B798 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,7 +82,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63D7A77220C96CED0010B798 /* SystemConfiguration.framework in Frameworks */,
 				63D7A76C20C950190010B798 /* Foundation.framework in Frameworks */,
+				63D7A76F20C96C740010B798 /* SpotifyAuthentication.framework in Frameworks */,
+				63D7A77020C96C740010B798 /* SpotifyAudioPlayback.framework in Frameworks */,
 				63D7A76A20C9500E0010B798 /* UIKit.framework in Frameworks */,
 				63D7A76820C94FF80010B798 /* AVFoundation.framework in Frameworks */,
 			);
@@ -162,6 +171,9 @@
 		63D7A76620C94FF80010B798 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				63D7A77120C96CED0010B798 /* SystemConfiguration.framework */,
+				63D7A76E20C96C740010B798 /* SpotifyAudioPlayback.framework */,
+				63D7A76D20C96C730010B798 /* SpotifyAuthentication.framework */,
 				63D7A76B20C950190010B798 /* Foundation.framework */,
 				63D7A76920C9500E0010B798 /* UIKit.framework */,
 				63D7A76720C94FF80010B798 /* AVFoundation.framework */,
@@ -488,6 +500,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ZooeyBossert.Project;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -505,6 +518,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ZooeyBossert.Project;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
