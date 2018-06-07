@@ -11,8 +11,7 @@ These problems occur to people of all ages and interest but mostly to people tha
 These problems can all be solved with Musica (not the final name) App! With this app you connect with your friends and create playlists. Save the songs you like and make playlists you can share with friends. 
 
 ## Prerequisites
-For the music the API of Soundcloud can be used (maybe also the YouTube API). For saving the song Firebase will be used. How to connect 
-the phones, I am still figuring out.
+For the music the API of Spotify will be used. For saving the song Firebase will be used. 
 
 ## Example Sketch
 ![](doc/designdoc.png)
