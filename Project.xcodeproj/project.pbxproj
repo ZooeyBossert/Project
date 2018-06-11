@@ -25,9 +25,10 @@
 		63D7A76820C94FF80010B798 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63D7A76720C94FF80010B798 /* AVFoundation.framework */; };
 		63D7A76A20C9500E0010B798 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63D7A76920C9500E0010B798 /* UIKit.framework */; };
 		63D7A76C20C950190010B798 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63D7A76B20C950190010B798 /* Foundation.framework */; };
-		63D7A76F20C96C740010B798 /* SpotifyAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63D7A76D20C96C730010B798 /* SpotifyAuthentication.framework */; };
-		63D7A77020C96C740010B798 /* SpotifyAudioPlayback.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63D7A76E20C96C740010B798 /* SpotifyAudioPlayback.framework */; };
 		63D7A77220C96CED0010B798 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63D7A77120C96CED0010B798 /* SystemConfiguration.framework */; };
+		63D7A77B20CE9E1B0010B798 /* SpotifyAudioPlayback.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63D7A77820CE9E1A0010B798 /* SpotifyAudioPlayback.framework */; };
+		63D7A77C20CE9E1B0010B798 /* SpotifyMetadata.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63D7A77920CE9E1B0010B798 /* SpotifyMetadata.framework */; };
+		63D7A77D20CE9E1B0010B798 /* SpotifyAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63D7A77A20CE9E1B0010B798 /* SpotifyAuthentication.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,11 @@
 		63D7A76D20C96C730010B798 /* SpotifyAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpotifyAuthentication.framework; path = "../../Downloads/ios-sdk-beta-25/SpotifyAuthentication.framework"; sourceTree = "<group>"; };
 		63D7A76E20C96C740010B798 /* SpotifyAudioPlayback.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpotifyAudioPlayback.framework; path = "../../Downloads/ios-sdk-beta-25/SpotifyAudioPlayback.framework"; sourceTree = "<group>"; };
 		63D7A77120C96CED0010B798 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		63D7A77320CE80960010B798 /* SpotifyMetadata.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpotifyMetadata.framework; path = "../../Downloads/ios-sdk-beta-25/SpotifyMetadata.framework"; sourceTree = "<group>"; };
+		63D7A77820CE9E1A0010B798 /* SpotifyAudioPlayback.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyAudioPlayback.framework; sourceTree = "<group>"; };
+		63D7A77920CE9E1B0010B798 /* SpotifyMetadata.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyMetadata.framework; sourceTree = "<group>"; };
+		63D7A77A20CE9E1B0010B798 /* SpotifyAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyAuthentication.framework; sourceTree = "<group>"; };
+		63D7A78120CE9EB50010B798 /* Project-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Project-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,11 +89,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				63D7A77220C96CED0010B798 /* SystemConfiguration.framework in Frameworks */,
+				63D7A77D20CE9E1B0010B798 /* SpotifyAuthentication.framework in Frameworks */,
 				63D7A76C20C950190010B798 /* Foundation.framework in Frameworks */,
-				63D7A76F20C96C740010B798 /* SpotifyAuthentication.framework in Frameworks */,
-				63D7A77020C96C740010B798 /* SpotifyAudioPlayback.framework in Frameworks */,
 				63D7A76A20C9500E0010B798 /* UIKit.framework in Frameworks */,
 				63D7A76820C94FF80010B798 /* AVFoundation.framework in Frameworks */,
+				63D7A77C20CE9E1B0010B798 /* SpotifyMetadata.framework in Frameworks */,
+				63D7A77B20CE9E1B0010B798 /* SpotifyAudioPlayback.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,7 +139,11 @@
 		63D7A72720C538270010B798 /* Project */ = {
 			isa = PBXGroup;
 			children = (
+				63D7A77820CE9E1A0010B798 /* SpotifyAudioPlayback.framework */,
+				63D7A77A20CE9E1B0010B798 /* SpotifyAuthentication.framework */,
+				63D7A77920CE9E1B0010B798 /* SpotifyMetadata.framework */,
 				63D7A72820C538270010B798 /* AppDelegate.swift */,
+				63D7A78120CE9EB50010B798 /* Project-Bridging-Header.h */,
 				63D7A72A20C538270010B798 /* ViewController.swift */,
 				63D7A72C20C538270010B798 /* Main.storyboard */,
 				63D7A76420C93EAC0010B798 /* ResultTableViewController.swift */,
@@ -171,6 +182,7 @@
 		63D7A76620C94FF80010B798 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				63D7A77320CE80960010B798 /* SpotifyMetadata.framework */,
 				63D7A77120C96CED0010B798 /* SystemConfiguration.framework */,
 				63D7A76E20C96C740010B798 /* SpotifyAudioPlayback.framework */,
 				63D7A76D20C96C730010B798 /* SpotifyAuthentication.framework */,
@@ -249,6 +261,7 @@
 				TargetAttributes = {
 					63D7A72420C538270010B798 = {
 						CreatedOnToolsVersion = 9.4;
+						LastSwiftMigration = 0940;
 					};
 					63D7A73820C5382A0010B798 = {
 						CreatedOnToolsVersion = 9.4;
@@ -494,7 +507,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Project",
+				);
 				INFOPLIST_FILE = Project/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -503,6 +521,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ZooeyBossert.Project;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Project/Project-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -512,7 +532,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Project",
+				);
 				INFOPLIST_FILE = Project/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -521,6 +546,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ZooeyBossert.Project;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Project/Project-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

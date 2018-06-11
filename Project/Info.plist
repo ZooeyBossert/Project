@@ -25,7 +25,7 @@
 			<string>com.project.spotify-auth</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>spotify-ios-sdk-beta</string>
+				<string>Project</string>
 			</array>
 		</dict>
 	</array>
