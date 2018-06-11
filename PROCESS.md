@@ -12,3 +12,9 @@ will start looking tutorials on how to use the Spotify API.
 Today we had to give a short presentation about the idea of the app and what we have till now. Thanks to some people of the group 
 that gave some ideas to expand the app. They gave the idea to maybe suggest playlist based on location or where the playlist was
 made by a user. I am still working on the Spotify API.
+
+## 11 June
+
+I am almost done installing the Spotify API. There are some errors, but the it's past 16.00 so unfortunately there is no staff anymore 
+to help. So hopefully tomorrow the API is finished so I can install the search function and making playlists. I also have to look up
+if it is possible to get playlists from Spotify (official made playlist by Spotify) to link to a map. Since I am a bit stuck now with the API, I now going to look up Firebase and how to instal it etc.
