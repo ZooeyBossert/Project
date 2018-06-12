@@ -18,3 +18,10 @@ made by a user. I am still working on the Spotify API.
 I am almost done installing the Spotify API. There are some errors, but the it's past 16.00 so unfortunately there is no staff anymore 
 to help. So hopefully tomorrow the API is finished so I can install the search function and making playlists. I also have to look up
 if it is possible to get playlists from Spotify (official made playlist by Spotify) to link to a map. Since I am a bit stuck now with the API, I now going to look up Firebase and how to instal it etc.
+
+## 12 June
+
+Today I finished the login to Spotify and started working on the search on Spotify API. I got a bit stuck with the token, I still have to
+figure that out. So tomorros I will finish the search and set up the Firebase. As an extra I thought maybe showing your friends not in an
+ordinary list but display them on the map with their GPS. So the longitude and latitude are saevd in the Firebase (and updated) en called
+back to display.
