@@ -214,7 +214,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bHr-Nl-Zo9">
+                                        <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search, Type (Artist/Song etc)" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bHr-Nl-Zo9">
                                             <rect key="frame" x="16" y="6" width="343" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <nil key="textColor"/>
@@ -319,7 +319,6 @@
         <!--Settings-->
         <scene sceneID="7PB-Qo-3Fa">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="OsE-70-2gy" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="oWT-YZ-4Hd" customClass="SettingsTableViewController" customModule="Project" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="wUL-a3-aSg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -394,6 +393,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Settings" id="c4j-cY-TPj"/>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OsE-70-2gy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="628" y="950.37481259370327"/>
         </scene>
@@ -454,6 +454,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="Slm-fd-77W" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="RS2-vw-shJ">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>

@@ -7,11 +7,37 @@
 //
 
 import UIKit
+import Alamofire
 
 class SearchTableViewController: UITableViewController {
+    
+    typealias JSONStandard = [String: AnyObject]
+    
+    var searchURL = "https://api.spotify.com/v1/search?q=post%20malone&type=artist"
+    // q en type opvragen van persoon en toevoegen aan searchurl+...
+    
+    // Call the search
+    func callAlamo(url: String) {
+        Alamofire.request(url).responseJSON(completionHandler:  {
+            response in
+            self.parseData(JSONData: response.data!)
+        })
+    }
+    
+    // Get data drom the search
+    func parseData(JSONData: Data) {
+        do {
+            var readableJSON = try JSONSerialization.jsonObject(with: JSONData, options: .mutableContainers) as? JSONStandard
+            print(readableJSON)
+        }
+        catch {
+            print(error)
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        callAlamo(url: searchURL)
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
