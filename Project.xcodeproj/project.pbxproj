@@ -29,6 +29,7 @@
 		63D7A77B20CE9E1B0010B798 /* SpotifyAudioPlayback.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63D7A77820CE9E1A0010B798 /* SpotifyAudioPlayback.framework */; };
 		63D7A77C20CE9E1B0010B798 /* SpotifyMetadata.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63D7A77920CE9E1B0010B798 /* SpotifyMetadata.framework */; };
 		63D7A77D20CE9E1B0010B798 /* SpotifyAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63D7A77A20CE9E1B0010B798 /* SpotifyAuthentication.framework */; };
+		63D7A78320CFC2B00010B798 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D7A78220CFC2AF0010B798 /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +82,7 @@
 		63D7A77920CE9E1B0010B798 /* SpotifyMetadata.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyMetadata.framework; sourceTree = "<group>"; };
 		63D7A77A20CE9E1B0010B798 /* SpotifyAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyAuthentication.framework; sourceTree = "<group>"; };
 		63D7A78120CE9EB50010B798 /* Project-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Project-Bridging-Header.h"; sourceTree = "<group>"; };
+		63D7A78220CFC2AF0010B798 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +148,7 @@
 				63D7A78120CE9EB50010B798 /* Project-Bridging-Header.h */,
 				63D7A72A20C538270010B798 /* ViewController.swift */,
 				63D7A72C20C538270010B798 /* Main.storyboard */,
+				63D7A78220CFC2AF0010B798 /* SettingsViewController.swift */,
 				63D7A76420C93EAC0010B798 /* ResultTableViewController.swift */,
 				63D7A76220C9393C0010B798 /* MusicViewController.swift */,
 				63D7A75820C805E10010B798 /* SearchTableViewController.swift */,
@@ -327,6 +330,7 @@
 			files = (
 				63D7A72B20C538270010B798 /* ViewController.swift in Sources */,
 				63D7A75720C805850010B798 /* TabBarViewController.swift in Sources */,
+				63D7A78320CFC2B00010B798 /* SettingsViewController.swift in Sources */,
 				63D7A76520C93EAC0010B798 /* ResultTableViewController.swift in Sources */,
 				63D7A76120C806450010B798 /* MusicItem.swift in Sources */,
 				63D7A75D20C806140010B798 /* SettingsTableViewController.swift in Sources */,
