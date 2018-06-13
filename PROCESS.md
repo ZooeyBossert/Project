@@ -22,4 +22,12 @@ if it is possible to get playlists from Spotify (official made playlist by Spoti
 ## 12 June
 
 Today I finished the login to Spotify and started working on the search on Spotify API. I got a bit stuck with the token, I still have to
-figure that out. So tomorrow I will finish the search and set up the Firebase. I hope that I can let the full app work on Thursday! As an extra I thought maybe showing your friends not in an ordinary list but display them on the map with their GPS. So the longitude and latitude are saevd in the Firebase (and updated) en called back to display.
+figure that out. So tomorrow I will finish the search and set up the Firebase. I hope that I can let the full app work on Thursday! As an
+extra I thought maybe showing your friends not in an ordinary list but display them on the map with their GPS. So the longitude and
+latitude are saevd in the Firebase (and updated) en called back to display.
+
+## 13 June
+
+It took the whole day to figure out what kind of token I need to do the search... So now I coded the request but I have some errors, I 
+ask them tomorrow (the TA's are allready gone). So tomorrow morning I will set up the Firebase and complete the search hopefully. Next
+week I wil start the making of the playlists and streming the music and add the extra of the location of friends. It is getting somewhere!
