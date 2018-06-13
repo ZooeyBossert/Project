@@ -214,9 +214,8 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search, Type (Artist/Song etc)" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bHr-Nl-Zo9">
-                                            <rect key="frame" x="16" y="6" width="343" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search, Type (Artist/Song etc)" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bHr-Nl-Zo9">
+                                            <rect key="frame" x="16" y="6" width="343" height="31.5"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
@@ -225,6 +224,13 @@
                                             </connections>
                                         </textField>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="bHr-Nl-Zo9" secondAttribute="bottom" constant="6" id="1G4-Wd-K4C"/>
+                                        <constraint firstItem="bHr-Nl-Zo9" firstAttribute="leading" secondItem="z1h-fp-7nZ" secondAttribute="leading" constant="16" id="5XW-1C-G8g"/>
+                                        <constraint firstAttribute="trailing" secondItem="bHr-Nl-Zo9" secondAttribute="trailing" constant="16" id="Prr-dj-5S2"/>
+                                        <constraint firstItem="bHr-Nl-Zo9" firstAttribute="top" secondItem="z1h-fp-7nZ" secondAttribute="top" constant="6" id="QpK-SC-Ujn"/>
+                                        <constraint firstItem="bHr-Nl-Zo9" firstAttribute="centerY" secondItem="z1h-fp-7nZ" secondAttribute="centerY" id="iJ3-Ia-LTi"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -334,11 +340,14 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="134.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="93g-RD-VkC">
-                                                    <rect key="frame" x="16" y="8" width="142" height="118.5"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Solid_gray" translatesAutoresizingMaskIntoConstraints="NO" id="93g-RD-VkC">
+                                                    <rect key="frame" x="16" y="8" width="150" height="118.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="150" id="PKD-v9-q0m"/>
+                                                    </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="STE-tI-PBc">
-                                                    <rect key="frame" x="181" y="57.5" width="166" height="20.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="STE-tI-PBc">
+                                                    <rect key="frame" x="176" y="57.5" width="79" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -369,18 +378,15 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qzG-0B-WsC">
-                                                    <rect key="frame" x="69" y="-1" width="237" height="45"/>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qzG-0B-WsC">
+                                                    <rect key="frame" x="69" y="-1" width="229" height="45"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" title="Login With Spotify" image="ConnectSpotify"/>
                                                     <connections>
                                                         <action selector="LoginButtonPressed:" destination="oWT-YZ-4Hd" eventType="touchUpInside" id="8JZ-CA-B9Y"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="qzG-0B-WsC" secondAttribute="trailing" constant="69" id="LFR-gT-h2g"/>
-                                                <constraint firstItem="qzG-0B-WsC" firstAttribute="leading" secondItem="Xye-fF-VRs" secondAttribute="leading" constant="69" id="XDQ-IA-PF9"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -472,6 +478,7 @@
     </scenes>
     <resources>
         <image name="ConnectSpotify" width="537" height="94"/>
+        <image name="Solid_gray" width="200" height="200"/>
         <image name="audio" width="30" height="30"/>
         <image name="play" width="30" height="30"/>
         <image name="settings" width="30" height="30"/>

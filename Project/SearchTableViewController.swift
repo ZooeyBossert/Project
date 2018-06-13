@@ -24,7 +24,7 @@ class SearchTableViewController: UITableViewController {
         })
     }
     
-    // Get data drom the search
+    // Get data drom the search GEEF ACCESS TOKEN MEE!!
     func parseData(JSONData: Data) {
         do {
             var readableJSON = try JSONSerialization.jsonObject(with: JSONData, options: .mutableContainers) as? JSONStandard

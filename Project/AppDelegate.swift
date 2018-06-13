@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // check if app can handle redirect URL
         if auth.canHandle(auth.redirectURL) {
             // handle callback in closure
-            auth.handleAuthCallback(withTriggeredAuthURL: url, callback: { (error, session) in
+            auth.handleAuthCallback(withTriggeredAuthURL: url , callback: { (error, session) in
                 // handle error
                 if error != nil {
                     print("error!")

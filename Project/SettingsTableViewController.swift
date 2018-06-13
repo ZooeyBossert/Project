@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 
 class SettingsTableViewController: UITableViewController {
     
@@ -16,6 +17,8 @@ class SettingsTableViewController: UITableViewController {
     var loginUrl: URL?
     // Define identifier
     let notificationName = Notification.Name("LoggedIn")
+    
+    let baseURL = URL(string: "https://accounts.spotify.com/authorize")!
 
     
     func setup() {
@@ -42,6 +45,21 @@ class SettingsTableViewController: UITableViewController {
             let firstTimeSession = NSKeyedUnarchiver.unarchiveObject(with: sessionDataObj) as! SPTSession
             self.session = firstTimeSession
             initializePlayer(authSession: session)
+            
+            // Request access and token
+            let clientURL = baseURL.appendingPathComponent("\(auth.clientID)")
+            let typeURL = clientURL.appendingPathComponent("code")
+            let requestURL = typeURL.appendingPathComponent("\(auth.redirectURL)")
+
+            let task = URLSession.shared.dataTask(with: requestURL) { (data, response, error) in
+                let jsonDecoder = JSONDecoder()
+                if let data = data,
+                    let tokenItems = try? jsonDecoder.decode(TokenItems.self, from: data) {
+                    completion(tokenItems.items)
+                } else {
+                    completion(nil)
+                }
+            }
         }
     }
     
