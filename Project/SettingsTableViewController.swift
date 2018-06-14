@@ -46,7 +46,7 @@ class SettingsTableViewController: UITableViewController {
             self.session = firstTimeSession
             initializePlayer(authSession: session)
             
-            // Request access and token
+            // Request access token
             let clientURL = baseURL.appendingPathComponent("\(auth.clientID)")
             let typeURL = clientURL.appendingPathComponent("code")
             let requestURL = typeURL.appendingPathComponent("\(auth.redirectURL)")
@@ -54,10 +54,10 @@ class SettingsTableViewController: UITableViewController {
             let task = URLSession.shared.dataTask(with: requestURL) { (data, response, error) in
                 let jsonDecoder = JSONDecoder()
                 if let data = data,
-                    let tokenItems = try? jsonDecoder.decode(TokenItems.self, from: data) {
-                    completion(tokenItems.items)
+                    let tokenItem = try? jsonDecoder.decode(TokenItem.self, from: data) {
+                        TokenItem.shared = tokenItem
                 } else {
-                    completion(nil)
+//                    completion(nil)
                 }
             }
         }

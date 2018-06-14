@@ -9,6 +9,9 @@
 import Foundation
 
 struct TokenItem: Codable {
+    
+    static var shared: TokenItem?
+    
     var access_token: String
     var token_type: String
     var scope: String
@@ -22,8 +25,4 @@ struct TokenItem: Codable {
         case expires_in
         case refresh_token
     }
-}
-
-struct TokenItems: Codable {
-    let items: [TokenItem]
 }

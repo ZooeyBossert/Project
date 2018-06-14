@@ -7,9 +7,16 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseUI
+import FirebaseAuth
 
 class ViewController: UIViewController {
+    
+    let authViewController = FUIAuth.defaultAuthUI()?.authViewController()
 
+    self.presentViewController(authViewController, animated: true, completion: nil)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.

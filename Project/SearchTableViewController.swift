@@ -13,6 +13,9 @@ class SearchTableViewController: UITableViewController {
     
     typealias JSONStandard = [String: AnyObject]
     
+    // Get access token
+    let token = TokenItem
+    
     var searchURL = "https://api.spotify.com/v1/search?q=post%20malone&type=artist"
     // q en type opvragen van persoon en toevoegen aan searchurl+...
     
@@ -23,6 +26,31 @@ class SearchTableViewController: UITableViewController {
             self.parseData(JSONData: response.data!)
         })
     }
+    
+    func submitOrder(menuIds: [Int], completion: @escaping (Int?) -> Void) {
+        // create baseurl and add in other function the search request
+//        let searchURL = baseURL.appendingPathComponent("order")
+        var request = URLRequest(url: searchURL)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("Bearer \(token)", forHTTPHeaderField: "Autherization")
+        let data: [String: [Int]] = ["menuIds": menuIds]
+        let jsonEncoder = JSONEncoder()
+        let jsonData = try? jsonEncoder.encode(data)
+        request.httpBody = jsonData
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            let jsonDecoder = JSONDecoder()
+            if let data = data,
+                let preparationTime = try? jsonDecoder.decode(PreparationTime.self, from: data) {
+                completion(preparationTime.prepTime)
+            } else {
+                completion(nil)
+            }
+        }
+        task.resume()
+    }
+
     
     // Get data drom the search GEEF ACCESS TOKEN MEE!!
     func parseData(JSONData: Data) {

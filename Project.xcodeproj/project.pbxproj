@@ -7,7 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		63005CBE20D27D50001B22BB /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63005CBD20D27D50001B22BB /* Alamofire.framework */; };
+		63005CC020D27D50001B22BB /* FirebaseAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63005CBF20D27D50001B22BB /* FirebaseAuth.framework */; };
+		63005CC220D27D50001B22BB /* FirebaseCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63005CC120D27D50001B22BB /* FirebaseCore.framework */; };
+		63005CC420D27D50001B22BB /* FirebaseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63005CC320D27D50001B22BB /* FirebaseUI.framework */; };
 		63AB4E3D20D153D500B0F37C /* TokenItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AB4E3C20D153D500B0F37C /* TokenItem.swift */; };
+		63AB4E3F20D25FFF00B0F37C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 63AB4E3E20D25FFF00B0F37C /* GoogleService-Info.plist */; };
 		63D7A72920C538270010B798 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D7A72820C538270010B798 /* AppDelegate.swift */; };
 		63D7A72B20C538270010B798 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D7A72A20C538270010B798 /* ViewController.swift */; };
 		63D7A72E20C538270010B798 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63D7A72C20C538270010B798 /* Main.storyboard */; };
@@ -55,7 +60,15 @@
 /* Begin PBXFileReference section */
 		11E9FE3DDF2A61C147B8C5F9 /* Pods_ProjectTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProjectTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		24B14F79DC2E76C7CA043880 /* Pods-Project.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Project/Pods-Project.debug.xcconfig"; sourceTree = "<group>"; };
+		63005CBD20D27D50001B22BB /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		63005CBF20D27D50001B22BB /* FirebaseAuth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseAuth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		63005CC120D27D50001B22BB /* FirebaseCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		63005CC320D27D50001B22BB /* FirebaseUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		63005CC720D28CDA001B22BB /* Project.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Project.entitlements; sourceTree = "<group>"; };
+		63005CC820D28EC7001B22BB /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		63005CCA20D28EC7001B22BB /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		63AB4E3C20D153D500B0F37C /* TokenItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenItem.swift; sourceTree = "<group>"; };
+		63AB4E3E20D25FFF00B0F37C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		63D7A72520C538270010B798 /* Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Project.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63D7A72820C538270010B798 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		63D7A72A20C538270010B798 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -102,6 +115,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63005CBE20D27D50001B22BB /* Alamofire.framework in Frameworks */,
+				63005CC020D27D50001B22BB /* FirebaseAuth.framework in Frameworks */,
+				63005CC220D27D50001B22BB /* FirebaseCore.framework in Frameworks */,
+				63005CC420D27D50001B22BB /* FirebaseUI.framework in Frameworks */,
 				63D7A77220C96CED0010B798 /* SystemConfiguration.framework in Frameworks */,
 				63D7A77D20CE9E1B0010B798 /* SpotifyAuthentication.framework in Frameworks */,
 				63D7A76C20C950190010B798 /* Foundation.framework in Frameworks */,
@@ -157,6 +174,7 @@
 		63D7A72720C538270010B798 /* Project */ = {
 			isa = PBXGroup;
 			children = (
+				63005CC720D28CDA001B22BB /* Project.entitlements */,
 				63D7A77820CE9E1A0010B798 /* SpotifyAudioPlayback.framework */,
 				63D7A77A20CE9E1B0010B798 /* SpotifyAuthentication.framework */,
 				63D7A77920CE9E1B0010B798 /* SpotifyMetadata.framework */,
@@ -175,6 +193,7 @@
 				63D7A75620C805850010B798 /* TabBarViewController.swift */,
 				63D7A72F20C5382A0010B798 /* Assets.xcassets */,
 				63D7A73120C5382A0010B798 /* LaunchScreen.storyboard */,
+				63AB4E3E20D25FFF00B0F37C /* GoogleService-Info.plist */,
 				63D7A73420C5382A0010B798 /* Info.plist */,
 			);
 			path = Project;
@@ -201,6 +220,12 @@
 		63D7A76620C94FF80010B798 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				63005CC820D28EC7001B22BB /* FBSDKCoreKit.framework */,
+				63005CCA20D28EC7001B22BB /* FBSDKLoginKit.framework */,
+				63005CBD20D27D50001B22BB /* Alamofire.framework */,
+				63005CBF20D27D50001B22BB /* FirebaseAuth.framework */,
+				63005CC120D27D50001B22BB /* FirebaseCore.framework */,
+				63005CC320D27D50001B22BB /* FirebaseUI.framework */,
 				63D7A77320CE80960010B798 /* SpotifyMetadata.framework */,
 				63D7A77120C96CED0010B798 /* SystemConfiguration.framework */,
 				63D7A76E20C96C740010B798 /* SpotifyAudioPlayback.framework */,
@@ -240,6 +265,7 @@
 				63D7A72220C538270010B798 /* Frameworks */,
 				63D7A72320C538270010B798 /* Resources */,
 				9348DE75540C2EBDD49848B0 /* [CP] Embed Pods Frameworks */,
+				729767902DFB1D5B7A269D2C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -301,6 +327,11 @@
 					63D7A72420C538270010B798 = {
 						CreatedOnToolsVersion = 9.4;
 						LastSwiftMigration = 0940;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 					63D7A73820C5382A0010B798 = {
 						CreatedOnToolsVersion = 9.4;
@@ -338,6 +369,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				63D7A73320C5382A0010B798 /* LaunchScreen.storyboard in Resources */,
+				63AB4E3F20D25FFF00B0F37C /* GoogleService-Info.plist in Resources */,
 				63D7A73020C5382A0010B798 /* Assets.xcassets in Resources */,
 				63D7A72E20C538270010B798 /* Main.storyboard in Resources */,
 			);
@@ -378,6 +410,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		729767902DFB1D5B7A269D2C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Project/Pods-Project-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseUI/FirebaseAuthUI.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FirebaseAuthUI.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Project/Pods-Project-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		9348DE75540C2EBDD49848B0 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -386,10 +436,16 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Project/Pods-Project-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -624,7 +680,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Project/Project.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QWVP8B72X4;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Project",
@@ -650,7 +708,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Project/Project.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QWVP8B72X4;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Project",
