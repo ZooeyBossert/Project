@@ -14,36 +14,29 @@ class SearchTableViewController: UITableViewController {
     typealias JSONStandard = [String: AnyObject]
     
     // Get access token
-    let token = TokenItem
+    let token = TokenItem.shared?.access_token
     
-    var searchURL = "https://api.spotify.com/v1/search?q=post%20malone&type=artist"
+    // base url moet nog aangepast en zorgen voor en search url
+    let baseURL = URL(string: "https://api.spotify.com/v1/search?q=post%20malone&type=artist")!
     // q en type opvragen van persoon en toevoegen aan searchurl+...
-    
-    // Call the search
-    func callAlamo(url: String) {
-        Alamofire.request(url).responseJSON(completionHandler:  {
-            response in
-            self.parseData(JSONData: response.data!)
-        })
-    }
     
     func submitOrder(menuIds: [Int], completion: @escaping (Int?) -> Void) {
         // create baseurl and add in other function the search request
 //        let searchURL = baseURL.appendingPathComponent("order")
-        var request = URLRequest(url: searchURL)
-        request.httpMethod = "POST"
+        var request = URLRequest(url: baseURL)
+        request.httpMethod = "GET"
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("Bearer \(token)", forHTTPHeaderField: "Autherization")
-        let data: [String: [Int]] = ["menuIds": menuIds]
         let jsonEncoder = JSONEncoder()
         let jsonData = try? jsonEncoder.encode(data)
         request.httpBody = jsonData
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             let jsonDecoder = JSONDecoder()
-            if let data = data,
-                let preparationTime = try? jsonDecoder.decode(PreparationTime.self, from: data) {
-                completion(preparationTime.prepTime)
+            if let tracks = jsonDecoder["tracks"] as? JSONStandard {
+                if let items = jsonDecoder["items"] as? [JSONStandard] {
+                    
+                }
             } else {
                 completion(nil)
             }
@@ -51,21 +44,8 @@ class SearchTableViewController: UITableViewController {
         task.resume()
     }
 
-    
-    // Get data drom the search GEEF ACCESS TOKEN MEE!!
-    func parseData(JSONData: Data) {
-        do {
-            var readableJSON = try JSONSerialization.jsonObject(with: JSONData, options: .mutableContainers) as? JSONStandard
-            print(readableJSON)
-        }
-        catch {
-            print(error)
-        }
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        callAlamo(url: searchURL)
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -117,7 +97,7 @@ class SearchTableViewController: UITableViewController {
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        }
     }
     */
 

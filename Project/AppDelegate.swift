@@ -15,13 +15,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var auth = SPTAuth()
+    
+    override init() {
+        super.init()
+        FirebaseApp.configure()
+        // not really needed unless you really need it FIRDatabase.database().persistenceEnabled = true
+    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // App login on Firebase
-        FirebaseApp.configure()
         let authUI = FUIAuth.defaultAuthUI()
         authUI?.delegate = self as? FUIAuthDelegate
-        let authViewController = authUI?.authViewController()
         
         // Spotify login
         auth.redirectURL     = URL(string: "Project://returnAfterLogin")

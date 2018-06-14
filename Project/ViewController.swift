@@ -15,11 +15,17 @@ class ViewController: UIViewController {
     
     let authViewController = FUIAuth.defaultAuthUI()?.authViewController()
 
-    self.presentViewController(authViewController, animated: true, completion: nil)
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        present(authViewController!, animated: true, completion: nil)
+    }
+    
+    func authUI(_ authUI: FUIAuth, didSignInWith user: User?, error: Error?) {
+        // handle user and error as necessary ???!!!
     }
 
     override func didReceiveMemoryWarning() {
