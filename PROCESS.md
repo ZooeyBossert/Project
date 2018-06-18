@@ -31,3 +31,12 @@ latitude are saevd in the Firebase (and updated) en called back to display.
 It took the whole day to figure out what kind of token I need to do the search... So now I coded the request but I have some errors, I 
 ask them tomorrow (the TA's are allready gone). So tomorrow morning I will set up the Firebase and complete the search hopefully. Next
 week I wil start the making of the playlists and streming the music and add the extra of the location of friends. It is getting somewhere!
+
+
+## 14 June
+
+Finished the Firebase login only it wont go to the next screen after logging in. Further the request for the access token succeeded.
+However the search function is not finished yet since I can't get to the screen and check. I have to format the recievin data into a 
+screen and then make the function to play the music or add it to a playlist. Also the database for Firebase has to be adjusted. Next week
+is going to be a busy week since I also have to add the location manager of Apple into the App and in a map with the profiles of users.
+
