@@ -40,3 +40,12 @@ However the search function is not finished yet since I can't get to the screen 
 screen and then make the function to play the music or add it to a playlist. Also the database for Firebase has to be adjusted. Next week
 is going to be a busy week since I also have to add the location manager of Apple into the App and in a map with the profiles of users.
 
+## 18 June
+
+We started with the Standup and the targets for this week. I fixed the segue problem of the login. However I found out that when a user 
+logs in/creates an account the user is not saved. So hopefully I can fix that tomorrow. I also worked on the JSON returns, I created 
+different structs for possible search returns. However I still have to find a way to get it into the structs. 
+
+
+
+
