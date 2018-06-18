@@ -13,19 +13,30 @@ import FirebaseAuth
 
 class ViewController: UIViewController {
     
+//    // Doet niet ref naar database
+//    var ref: DatabaseReference!
+//    ref = Database.database().reference()
+    
     let authViewController = FUIAuth.defaultAuthUI()?.authViewController()
-
+    var seen = false
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        present(authViewController!, animated: true, completion: nil)
+        if seen == false {
+            present(authViewController!, animated: true, completion: nil)
+            seen = true
+        } else {
+            performSegue(withIdentifier: "LoggedInSegue", sender: self)
+        }
     }
     
     func authUI(_ authUI: FUIAuth, didSignInWith user: User?, error: Error?) {
         // handle user and error as necessary ???!!!
+        performSegue(withIdentifier: "LoggedInSegue", sender: self)
+        print("authUI")
     }
 
     override func didReceiveMemoryWarning() {
