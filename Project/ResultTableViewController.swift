@@ -9,13 +9,16 @@
 import UIKit
 
 class ResultTableViewController: UITableViewController {
+    
+    // meegekregen van search
+//    let type = type?
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return 0 // gelijk maken aan aantal items van album/artiest/track/playlist
     }
     
-    
+    // creating enough cells
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         return cell
@@ -41,7 +44,7 @@ class ResultTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 100
     }
 
     /*

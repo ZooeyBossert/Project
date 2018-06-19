@@ -9,6 +9,8 @@
 import Foundation
 
 struct ExternalURL: Codable {
+    static var shared: ExternalURL?
+    
     var key: String
     var value: String
 
@@ -18,3 +20,7 @@ struct ExternalURL: Codable {
     }
 }
 
+struct ExternalURLs: Codable {
+    static var shared: ExternalURL?
+    let items: [ExternalURL]
+}

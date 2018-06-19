@@ -11,6 +11,9 @@ import Foundation
 
 class SettingsTableViewController: UITableViewController {
     
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var profilePicture: UIImageView!
+    
     var auth = SPTAuth.defaultInstance()!
     var session:SPTSession!
     var player: SPTAudioStreamingController?

@@ -9,27 +9,21 @@
 import Foundation
 
 struct ArtistItem: Codable {
-    var external_urls: URL // meerdere url objecten voor artiest
-    var followers: [String] // lijst van andere artiesten simplefied
+    var external_urls: [ExternalURL]
     var genre: [String]
     var href: String
     var id: String
     var images: URL //array van image objecten
     var name: String
-    var popularity: Int
-    var type: String
     var uri: String
     
     enum CodingKeys: String, CodingKey {
-        case external_urls = "external_urls"
-        case followers
+        case external_urls
         case genre
         case href
         case id
         case images
         case name
-        case popularity
-        case type
         case uri
     }
 }

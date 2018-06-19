@@ -10,17 +10,19 @@ import UIKit
 import Firebase
 import FirebaseUI
 import FirebaseAuth
+import FirebaseDatabase
 
 class ViewController: UIViewController {
     
-//    // Doet niet ref naar database
-//    var ref: DatabaseReference!
-//    ref = Database.database().reference()
+    // Ref naar database
+    var ref: DatabaseReference!
     
     let authViewController = FUIAuth.defaultAuthUI()?.authViewController()
     var seen = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        ref = Database.database().reference()
         // Do any additional setup after loading the view, typically from a nib.
     }
     
