@@ -46,6 +46,12 @@ We started with the Standup and the targets for this week. I fixed the segue pro
 logs in/creates an account the user is not saved. So hopefully I can fix that tomorrow. I also worked on the JSON returns, I created 
 different structs for possible search returns. However I still have to find a way to get it into the structs. 
 
+## 19 June
+Added the struct for the recieving JSON data. However there is still a error with the data. Further I researched more the datastructure 
+from Firebase. I want to make 2 children, users and playlist. The latter is linked to the user. First I have to figure out how I connect
+users in the database. I hope to fix both problems tomorrow. After that I have to visualize everything.
+
+
 
 
 
