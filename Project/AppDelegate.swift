@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import FirebaseUI
+import GoogleMaps
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -27,6 +28,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // App login on Firebase
         let authUI = FUIAuth.defaultAuthUI()
         authUI?.delegate = self as? FUIAuthDelegate
+        
+        //Google Maps API
+        GMSServices.provideAPIKey("AIzaSyC2EWKAASQ3Eoj8VLCx3vH9PfNjlAz_jrM")
         
         // Spotify login
         auth.redirectURL     = URL(string: "Project://returnAfterLogin")

@@ -8,12 +8,15 @@
 
 import UIKit
 import Foundation
+import Firebase
+import FirebaseDatabase
 
 class SettingsTableViewController: UITableViewController {
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var profilePicture: UIImageView!
     
+    var ref: DatabaseReference!
     var auth = SPTAuth.defaultInstance()!
     var session:SPTSession!
     var player: SPTAudioStreamingController?
@@ -64,6 +67,9 @@ class SettingsTableViewController: UITableViewController {
                 }
             }
         }
+        let uid = Auth.auth().currentUser?.uid
+        let addToken = ref.child("users").child(uid!).child("access_token")
+        addToken.setValue(TokenItem.shared?.access_token)
     }
     
     
@@ -85,9 +91,32 @@ class SettingsTableViewController: UITableViewController {
         })
     }
     
+    func fetchImage() {
+        let imageURL = URL(string: "https://api.spotify.com/v1/me")
+        var request = URLRequest(url: imageURL!)
+        request.httpMethod = "GET"
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("Bearer \(TokenItem.shared?.access_token)", forHTTPHeaderField: "Autherization")
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            let jsonDecoder = JSONDecoder()
+            if let data = data,
+                let image = UIImage(data: data) {
+                self.profilePicture.image = image
+            }
+        }
+        task.resume()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        ref = Database.database().reference()
+        let uid = Auth.auth().currentUser?.uid
+        ref.child("user").child(uid!).observe(.value) { (snapshot) in
+            self.nameLabel = value?("username") as! UILabel // dunno whyyyyyyyyy help
+        }
         setup()
+        fetchImage()
         NotificationCenter.default.addObserver(self, selector: #selector(SettingsTableViewController.updateAfterFirstLogin), name: notificationName, object: nil)
 
         // Uncomment the following line to preserve selection between presentations

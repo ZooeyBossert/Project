@@ -38,11 +38,16 @@ class SearchViewController: UIViewController {
         var first = qTextField.text
         var second = typeTextField.text
 
-        let q = first?.lowercased().addingASCIIEntities
+        var q = first?.lowercased()
+        q?.addingASCIIEntities
+        print("\n")
+        print(q)
         let type = second?.lowercased()
+        print("\n")
+        print(type)
         
-        let search = "https://api.spotify.com/v1/search?q=\(q)&type=\(type)"
-        let searchURL = URL(string: search)!
+//        let search = "https://api.spotify.com/v1/search?q=\(q)&type=\(type)"
+        let searchURL = URL(string: "https://api.spotify.com/v1/search?q=\(q)&type=\(type)")!
         
 //        ???
 //        var components = URLComponents(url: baseURL, resolvingAgainstBaseURL: true)!
@@ -52,32 +57,38 @@ class SearchViewController: UIViewController {
         var request = URLRequest(url: searchURL)
         request.httpMethod = "GET"
         request.setValue("application/json", forHTTPHeaderField: "Accept")
+        print("\n")
+        print(request)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        print("\n")
+        print(request)
         request.setValue("Bearer \(token)", forHTTPHeaderField: "Autherization")
+        print("\n")
+        print(request)
         
-        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            let jsonDecoder = JSONDecoder()
-            if let data = data,
-                if type == "album",
-                    let albumItem = try? jsonDecoder.decode(AlbumItem.self, from: data) {
-                    completion(albumItems.items)
-                }
-                if type == "artist",
-                    let artistItem = try? jsonDecoder.decode(ArtistItem.self, from: data) {
-                    completion(artistItems.items)
-                }
-                if type == "track",
-                    let trackItem = try? jsonDecoder.decode(TrackItem.self, from: data) {
-                    completion(trackItems.items)
-                }
-                if type == "playlist",
-                    let playlistItem = try? jsonDecoder.decode(PlaylistItem.self, from: data) {
-                    completion(playlistItems.items)
-                }else {
-                    completion(nil)
-                }
-        }
-        task.resume()
+//        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+//            let jsonDecoder = JSONDecoder()
+//            if let data = data,
+//                if type == "album",
+//                    let albumItem = try? jsonDecoder.decode(AlbumItem.self, from: data) {
+//                    completion(albumItems.items)
+//                }
+//                if type == "artist",
+//                    let artistItem = try? jsonDecoder.decode(ArtistItem.self, from: data) {
+//                    completion(artistItems.items)
+//                }
+//                if type == "track",
+//                    let trackItem = try? jsonDecoder.decode(TrackItem.self, from: data) {
+//                    completion(trackItems.items)
+//                }
+//                if type == "playlist",
+//                    let playlistItem = try? jsonDecoder.decode(PlaylistItem.self, from: data) {
+//                    completion(playlistItems.items)
+//                }else {
+//                    completion(nil)
+//                }
+//        }
+//        task.resume()
     }
     
     
