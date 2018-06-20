@@ -47,9 +47,15 @@ logs in/creates an account the user is not saved. So hopefully I can fix that to
 different structs for possible search returns. However I still have to find a way to get it into the structs. 
 
 ## 19 June
+
 Added the struct for the recieving JSON data. However there is still a error with the data. Further I researched more the datastructure 
 from Firebase. I want to make 2 children, users and playlist. The latter is linked to the user. First I have to figure out how I connect
 users in the database. I hope to fix both problems tomorrow. After that I have to visualize everything.
+
+## 20 June
+Connected the login with the datastructure. Found the error with the JSON, but Marijn was not there to help. I added the Google Maps
+API. I want to insert the location manager tomorrow and fix the JSON and finally visualize it.
+
 
 
 
