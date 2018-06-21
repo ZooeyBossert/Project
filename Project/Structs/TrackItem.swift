@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct TrackItem: Codable {
+struct TrackItem: ResultItem, Codable {
     var album: AlbumItem
     var artists: [String] //array of artist objects simpl
     var disc_number: Int

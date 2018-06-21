@@ -15,94 +15,89 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var qTextField: UITextField!
     @IBOutlet weak var typeTextField: UITextField!
     @IBOutlet weak var searchButton: UIButton!
-
-    @IBAction func searchButtonPressed(_ sender: UIButton) {
-        submitSearch()
-        performSegue(withIdentifier: "SearchSegue", sender: self)
-    }
     
-    var names = [String]()
+    // Create empty string
+    var result = [ResultItem]()
+    var finalType = ""
     
     typealias JSONStandard = [String: AnyObject]
     
     // Get access token
     let token = TokenItem.shared?.access_token
     
-    // base url moet nog aangepast en zorgen voor en search url
-//    var baseURL: String = "https://api.spotify.com/v1/search"
+    // Create baseURL for the search
+    var baseURL = URL(string: "https://api.spotify.com/v1/search")
     
     //MARK: - Functions
-    // make this the submit button function?
-    func submitSearch() {
+    @IBAction func searchButtonPressed(_ sender: UIButton) {
+        submitSearch { (results, type) in
+            self.result = results!
+            self.finalType  = type
+            self.performSegue(withIdentifier: "SearchSegue", sender: self)
+        }
+    }
+
+    func submitSearch(completion: @escaping ([ResultItem]?, String) -> Void) {
+        
         // create baseurl and add in other function the search request
         var first = qTextField.text
         var second = typeTextField.text
 
-        var q = first?.lowercased()
-        q?.addingASCIIEntities
+        // TODO: check first and second
+        let q = first!.lowercased().addingASCIIEntities
         print("\n")
         print(q)
-        let type = second?.lowercased()
+        let type = second!.lowercased()
         print("\n")
         print(type)
-        
-//        let search = "https://api.spotify.com/v1/search?q=\(q)&type=\(type)"
-        let searchURL = URL(string: "https://api.spotify.com/v1/search?q=\(q)&type=\(type)")!
-        
-//        ???
-//        var components = URLComponents(url: baseURL, resolvingAgainstBaseURL: true)!
-//        components.queryItems = [URLQueryItem(name: "q=\(q)&type=\(type)", value: ]
-//        let searchURL = components.url!
+
+        var components = URLComponents(url: baseURL!, resolvingAgainstBaseURL: true)!
+        components.queryItems = [URLQueryItem(name: "q", value: q), URLQueryItem(name: "type", value: type)]
+        let searchURL = components.url!
         
         var request = URLRequest(url: searchURL)
         request.httpMethod = "GET"
         request.setValue("application/json", forHTTPHeaderField: "Accept")
-        print("\n")
-        print(request)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        print("\n")
-        print(request)
         request.setValue("Bearer \(token)", forHTTPHeaderField: "Autherization")
-        print("\n")
-        print(request)
         
-//        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-//            let jsonDecoder = JSONDecoder()
-//            if let data = data,
-//                if type == "album",
-//                    let albumItem = try? jsonDecoder.decode(AlbumItem.self, from: data) {
-//                    completion(albumItems.items)
-//                }
-//                if type == "artist",
-//                    let artistItem = try? jsonDecoder.decode(ArtistItem.self, from: data) {
-//                    completion(artistItems.items)
-//                }
-//                if type == "track",
-//                    let trackItem = try? jsonDecoder.decode(TrackItem.self, from: data) {
-//                    completion(trackItems.items)
-//                }
-//                if type == "playlist",
-//                    let playlistItem = try? jsonDecoder.decode(PlaylistItem.self, from: data) {
-//                    completion(playlistItems.items)
-//                }else {
-//                    completion(nil)
-//                }
-//        }
-//        task.resume()
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            let jsonDecoder = JSONDecoder()
+            if let data = data {
+                if type == "album",
+                    let albumItem = try? jsonDecoder.decode(AlbumItems.self, from: data) {
+                    completion(albumItem.items, type)
+                }
+                if type == "artist",
+                    let artistItem = try? jsonDecoder.decode(ArtistItems.self, from: data) {
+                    completion(artistItem.items, type)
+                }
+                if type == "track",
+                    let trackItem = try? jsonDecoder.decode(TrackItems.self, from: data) {
+                    completion(trackItem.items, type)
+                }
+                if type == "playlist",
+                    let playlistItem = try? jsonDecoder.decode(PlaylistItems.self, from: data) {
+                    completion(playlistItem.items, type)
+                } else {
+                    completion(nil, "")
+                }
+            }
+        }
+        task.resume()
     }
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SearchSegue" {
-            let type = typeTextField.text?.lowercased()
+            let resultTableViewController = segue.destination as! ResultTableViewController
+            resultTableViewController.results = self.result
+            resultTableViewController.type = self.finalType
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-
         // Do any additional setup after loading the view.
     }
 
@@ -121,5 +116,4 @@ class SearchViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
 }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct PlaylistItem: Codable {
+struct PlaylistItem: ResultItem, Codable {
     var collaborative: Bool
     var external_urls: [ExternalURL]
     var href: String

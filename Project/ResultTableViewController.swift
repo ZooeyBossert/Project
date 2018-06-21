@@ -10,23 +10,29 @@ import UIKit
 
 class ResultTableViewController: UITableViewController {
     
-    // meegekregen van search
-//    let type = type?
-
+    var results = [ResultItem]()
+    var type: String = ""
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0 // gelijk maken aan aantal items van album/artiest/track/playlist
+        return results.count
     }
-    
+     
     // creating enough cells
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        // Retrieve name from result item
+//        cell.textLabel?.text = results[indexPath].shared.name 
         return cell
     }
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(results)
+        print(type)
+        
+//        nameLabel.text =
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false

@@ -10,11 +10,13 @@ import UIKit
 import Foundation
 import Firebase
 import FirebaseDatabase
+import FirebaseUI
 
 class SettingsTableViewController: UITableViewController {
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var profilePicture: UIImageView!
+    @IBOutlet weak var logOutButton: UIButton!
     
     var ref: DatabaseReference!
     var auth = SPTAuth.defaultInstance()!
@@ -26,6 +28,10 @@ class SettingsTableViewController: UITableViewController {
     
     let baseURL = URL(string: "https://accounts.spotify.com/authorize")!
 
+//    // Log out of app
+//    @IBAction func logOutPressed(_ sender: Any) {
+//        FUIAuth.defaultAuthUI()?.signOut()
+//    }
     
     func setup() {
         auth.clientID = "fe10c4ee20a14c74b6192b7973395153"
@@ -34,42 +40,28 @@ class SettingsTableViewController: UITableViewController {
             SPTAuthPlaylistModifyPrivateScope]
         loginUrl = auth.spotifyWebAuthenticationURL()
     }
-    
-    func initializePlayer(authSession:SPTSession){
-        if self.player == nil {
-            self.player = SPTAudioStreamingController.sharedInstance()
-            self.player!.playbackDelegate = self as! SPTAudioStreamingPlaybackDelegate
-            self.player!.delegate = self as! SPTAudioStreamingDelegate
-            try! player!.start(withClientId: auth.clientID)
-            self.player!.login(withAccessToken: authSession.accessToken)
-        }
-    }
-    
-    @objc func updateAfterFirstLogin () {
-        if let sessionObj:AnyObject = UserDefaults.standard.object(forKey: "SpotifySession") as AnyObject? {
-            let sessionDataObj = sessionObj as! Data
-            let firstTimeSession = NSKeyedUnarchiver.unarchiveObject(with: sessionDataObj) as! SPTSession
-            self.session = firstTimeSession
-            initializePlayer(authSession: session)
-            
-            // Request access token
-            let clientURL = baseURL.appendingPathComponent("\(auth.clientID)")
-            let typeURL = clientURL.appendingPathComponent("code")
-            let requestURL = typeURL.appendingPathComponent("\(auth.redirectURL)")
 
-            let task = URLSession.shared.dataTask(with: requestURL) { (data, response, error) in
-                let jsonDecoder = JSONDecoder()
-                if let data = data,
-                    let tokenItem = try? jsonDecoder.decode(TokenItem.self, from: data) {
-                        TokenItem.shared = tokenItem
-                } else {
-//                    completion(nil)
-                }
+    
+    func requestToken(){
+        var components = URLComponents(url: baseURL, resolvingAgainstBaseURL: true)!
+        print("\n")
+        print(components)
+        components.queryItems = [URLQueryItem(name: "client_id", value: auth.clientID), URLQueryItem(name: "response_type", value: "code"), URLQueryItem(name: "redirect_uri", value: "auth.redirectURL")]
+        let requestURL = components.url!
+        print("\n")
+        print(requestURL)
+        
+        let task = URLSession.shared.dataTask(with: requestURL) { (data, response, error) in
+            let jsonDecoder = JSONDecoder()
+            if let data = data,
+                let tokenItem = try? jsonDecoder.decode(TokenItem.self, from: data) {
+                TokenItem.shared = tokenItem
+                print(tokenItem)
             }
-        }
         let uid = Auth.auth().currentUser?.uid
-        let addToken = ref.child("users").child(uid!).child("access_token")
+        let addToken = self.ref.child("users").child(uid!).child("access_token")
         addToken.setValue(TokenItem.shared?.access_token)
+        }
     }
     
     
@@ -110,13 +102,15 @@ class SettingsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        ref = Database.database().reference()
-        let uid = Auth.auth().currentUser?.uid
-        ref.child("user").child(uid!).observe(.value) { (snapshot) in
-            self.nameLabel = value?("username") as! UILabel // dunno whyyyyyyyyy help
-        }
+        self.tableView.rowHeight = 44;
+        // TODO: - update username label
+//        ref = Database.database().reference()
+//        let uid = Auth.auth().currentUser?.uid
+//        ref.child("user").child(uid!).observe(.value) { (snapshot) in
+//            let user = snapshot.value as! [String: String]
+//            self.nameLabel.text = user["username"] as? String
+//        }
         setup()
-        fetchImage()
         NotificationCenter.default.addObserver(self, selector: #selector(SettingsTableViewController.updateAfterFirstLogin), name: notificationName, object: nil)
 
         // Uncomment the following line to preserve selection between presentations
@@ -124,6 +118,30 @@ class SettingsTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
+    // TODO: - hij komt niet eens hier
+    @objc func updateAfterFirstLogin () {
+        if let sessionObj:AnyObject = UserDefaults.standard.object(forKey: "SpotifySession") as AnyObject? {
+            let sessionDataObj = sessionObj as! Data
+            let firstTimeSession = NSKeyedUnarchiver.unarchiveObject(with: sessionDataObj) as! SPTSession
+            self.session = firstTimeSession
+            initializePlayer(authSession: session)
+            print("token requesten \n")
+            requestToken()
+            print("token binnen")
+            fetchImage()
+        }
+    }
+    
+    func initializePlayer(authSession:SPTSession){
+        if self.player == nil {
+            self.player = SPTAudioStreamingController.sharedInstance()
+            self.player!.playbackDelegate = self as! SPTAudioStreamingPlaybackDelegate
+            self.player!.delegate = self as! SPTAudioStreamingDelegate
+            try! player!.start(withClientId: auth.clientID)
+            self.player!.login(withAccessToken: authSession.accessToken)
+        }
     }
 
     override func didReceiveMemoryWarning() {

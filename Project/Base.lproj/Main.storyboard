@@ -45,6 +45,9 @@
                                     <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="Jb1-4g-gv9" kind="show" identifier="PlayMusicSegue" id="0AJ-bZ-5m8"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -58,20 +61,13 @@
             </objects>
             <point key="canvasLocation" x="621.60000000000002" y="-1269.7151424287856"/>
         </scene>
-        <!--View Controller-->
+        <!--Player View Controller-->
         <scene sceneID="Bdg-39-eZL">
             <objects>
-                <viewController id="Jb1-4g-gv9" sceneMemberID="viewController">
+                <viewController id="Jb1-4g-gv9" customClass="PlayerViewController" customModule="Project" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qav-dY-xjv">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="K7i-XG-YpA">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </tableView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="hwD-s3-Adn"/>
                     </view>
@@ -180,7 +176,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8p5-GO-B33" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1619" y="-495"/>
+            <point key="canvasLocation" x="1618.4000000000001" y="-495.20239880059972"/>
         </scene>
         <!--Item View Controller-->
         <scene sceneID="Lqs-Gk-vOP">
@@ -190,47 +186,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Solid_gray" translatesAutoresizingMaskIntoConstraints="NO" id="K47-qj-Ygj">
-                                <rect key="frame" x="10" y="72" width="355" height="167"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="167" id="KZF-LP-kTf"/>
-                                </constraints>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wqE-kX-Jtb">
+                                <rect key="frame" x="0.0" y="7.5" width="375" height="667"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Song" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c3t-QB-vB0">
-                                <rect key="frame" x="166" y="280" width="40" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Artist" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sxp-Ho-Ykz">
-                                <rect key="frame" x="166" y="323" width="42" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PF6-xV-giv">
-                                <rect key="frame" x="10" y="580" width="355" height="30"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Add To Music">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VMO-vk-1Fh">
-                                <rect key="frame" x="132" y="393" width="110" height="41"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Preview"/>
-                            </button>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C9H-9d-eaw">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="51e-KV-1kp">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <blurEffect style="light"/>
+                            </visualEffectView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="K47-qj-Ygj" firstAttribute="top" secondItem="IxB-3L-VVT" secondAttribute="top" constant="8" id="0uV-dq-NSj"/>
-                            <constraint firstItem="PF6-xV-giv" firstAttribute="leading" secondItem="IxB-3L-VVT" secondAttribute="leading" constant="10" id="36T-Cf-fY7"/>
-                            <constraint firstItem="IxB-3L-VVT" firstAttribute="trailing" secondItem="PF6-xV-giv" secondAttribute="trailing" constant="10" id="4s1-Gs-Oyd"/>
-                            <constraint firstItem="IxB-3L-VVT" firstAttribute="trailing" secondItem="K47-qj-Ygj" secondAttribute="trailing" constant="10" id="kGj-Cz-RWf"/>
-                            <constraint firstItem="K47-qj-Ygj" firstAttribute="leading" secondItem="IxB-3L-VVT" secondAttribute="leading" constant="10" id="pKm-mD-eFJ"/>
-                            <constraint firstItem="IxB-3L-VVT" firstAttribute="bottom" secondItem="PF6-xV-giv" secondAttribute="bottom" constant="8" id="vaS-YB-3cS"/>
+                            <constraint firstItem="wqE-kX-Jtb" firstAttribute="centerY" secondItem="IxB-3L-VVT" secondAttribute="centerY" id="1fB-tQ-avd"/>
+                            <constraint firstItem="C9H-9d-eaw" firstAttribute="centerX" secondItem="IxB-3L-VVT" secondAttribute="centerX" id="8nI-Yg-Uvx"/>
+                            <constraint firstItem="wqE-kX-Jtb" firstAttribute="centerX" secondItem="IxB-3L-VVT" secondAttribute="centerX" id="K49-8K-5NH"/>
+                            <constraint firstItem="C9H-9d-eaw" firstAttribute="centerY" secondItem="IxB-3L-VVT" secondAttribute="centerY" id="SQZ-KO-oXU"/>
+                            <constraint firstItem="C9H-9d-eaw" firstAttribute="height" secondItem="Ohh-M3-Btf" secondAttribute="height" id="Tqv-mo-sxm"/>
+                            <constraint firstItem="wqE-kX-Jtb" firstAttribute="width" secondItem="Ohh-M3-Btf" secondAttribute="width" id="mH5-84-04j"/>
+                            <constraint firstItem="C9H-9d-eaw" firstAttribute="width" secondItem="Ohh-M3-Btf" secondAttribute="width" id="rez-5o-naU"/>
+                            <constraint firstItem="wqE-kX-Jtb" firstAttribute="height" secondItem="Ohh-M3-Btf" secondAttribute="height" id="zWM-mL-dTP"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="IxB-3L-VVT"/>
                     </view>
@@ -358,6 +335,9 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ep9-f8-Ppp">
                                                     <rect key="frame" x="160" y="6" width="55" height="30"/>
                                                     <state key="normal" title="Log Out"/>
+                                                    <connections>
+                                                        <action selector="logOutPressed:" destination="oWT-YZ-4Hd" eventType="touchUpInside" id="Xw8-ms-Itd"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -376,6 +356,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Settings" id="c4j-cY-TPj"/>
                     <connections>
+                        <outlet property="logOutButton" destination="ep9-f8-Ppp" id="Isw-mi-5eM"/>
                         <outlet property="nameLabel" destination="STE-tI-PBc" id="b59-mU-jaa"/>
                         <outlet property="profilePicture" destination="93g-RD-VkC" id="MTv-NR-APc"/>
                     </connections>
