@@ -56,6 +56,10 @@ users in the database. I hope to fix both problems tomorrow. After that I have t
 Connected the login with the datastructure. Found the error with the JSON, but Marijn was not there to help. I added the Google Maps
 API. I want to insert the location manager tomorrow and fix the JSON and finally visualize it.
 
+## 21 June
+
+Finished the search and implemented the location manager. However just found out that the acces token is not requested or recieved. Now I
+cannot check the search ans the visualization of it... So now I'm going to cry in my bed!
 
 
 
