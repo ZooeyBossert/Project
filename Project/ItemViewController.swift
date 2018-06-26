@@ -9,7 +9,15 @@
 import UIKit
 
 class ItemViewController: UIViewController {
-
+    
+    // MARK: - View Variables
+    @IBOutlet weak var mainImage: UIImageView!
+    @IBOutlet weak var backgroundImage: UIImageView!
+    @IBOutlet weak var titelLabel: UILabel!
+    @IBOutlet weak var artistLabel: UILabel!
+    @IBOutlet weak var previewButton: UIButton!
+    @IBOutlet weak var addButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

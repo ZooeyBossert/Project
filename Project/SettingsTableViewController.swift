@@ -30,7 +30,7 @@ class SettingsTableViewController: UITableViewController, SPTAudioStreamingPlayb
     
     var seen = false
     
-    let baseURL = URL(string: "https://accounts.spotify.com/authorize")!
+    let baseURL = URL(string: "https://accounts.spotify.com/api/token")!
 
 //    // Log out of app
 //    @IBAction func logOutPressed(_ sender: Any) {
@@ -48,10 +48,14 @@ class SettingsTableViewController: UITableViewController, SPTAudioStreamingPlayb
     
     func requestToken(){
         var components = URLComponents(url: baseURL, resolvingAgainstBaseURL: true)!
-        components.queryItems = [URLQueryItem(name: "client_id", value: auth.clientID), URLQueryItem(name: "response_type", value: "code"), URLQueryItem(name: "redirect_uri", value: "auth.redirectURL")]
+        components.queryItems = [URLQueryItem(name: "grant_type", value: "authorization_code"), URLQueryItem(name: "response_type", value: "code"), URLQueryItem(name: "redirect_uri", value: "auth.redirectURL")]
         let requestURL = components.url!
+        var request = URLRequest(url: requestURL)
+        request.httpMethod = "POST"
+        request.setValue("Authorization: Basic ZmUxMGM0ZWUyMGExNGM3NGI2MTkyYjc5NzMzOTUxNTM6OGFjYmNhOTIyOTBmNDBiOGFhZmVlNDI1ODYzYWVjM2Ig", forHTTPHeaderField: "Authorization")
         
-        let task = URLSession.shared.dataTask(with: requestURL) { (data, response, error) in
+        print("task")
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             let jsonDecoder = JSONDecoder()
             if let data = data,
                 let tokenItem = try? jsonDecoder.decode(TokenItem.self, from: data) {
@@ -62,15 +66,13 @@ class SettingsTableViewController: UITableViewController, SPTAudioStreamingPlayb
                 addToken.setValue(TokenItem.shared?.access_token)
             }
         }
+        task.resume()
     }
+    
+
     
     
     @IBAction func LoginButtonPressed(_ sender: Any) {
-//        if UIApplication.shared.openURL(loginUrl!) {
-//            if auth.canHandle(auth.redirectURL) {
-//                // als niet goede url error melding geven
-//            }
-//        }
         if seen == false {
             if UIApplication.shared.openURL(loginUrl!) {
                 seen = true
@@ -83,28 +85,22 @@ class SettingsTableViewController: UITableViewController, SPTAudioStreamingPlayb
         }
     }
     
-//    function om audio te streamen
-//    func audioStreamingDidLogin(_ audioStreaming: SPTAudioStreamingController!) {
-//        // after a user authenticates a session, the SPTAudioStreamingController is then initialized and this method called
-//        self.player?.playSpotifyURI("spotify:track:58s6EuEYJdlb0kO7awm3Vp", startingWith: 0, startingWithPosition: 0, callback: { (error) in
-//            if (error != nil) {
-//                print("playing!")
-//            }
-//        })
-//    }
-    
     func fetchImage() {
+        print("start fetch")
         let imageURL = URL(string: "https://api.spotify.com/v1/me")
         var request = URLRequest(url: imageURL!)
         request.httpMethod = "GET"
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue("Bearer \(TokenItem.shared?.access_token)", forHTTPHeaderField: "Autherization")
+        request.setValue("Bearer \(String(describing: TokenItem.shared?.access_token))", forHTTPHeaderField: "Autherization")
+        print("request: \(request)")
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             let jsonDecoder = JSONDecoder()
             if let data = data,
-                let image = UIImage(data: data) {
-                self.profilePicture.image = image
+                let userProfile = try? jsonDecoder.decode(UserProfile.self, from: data) {
+                let image = UserProfile.shared?.images
+                print(image)
+//                self.profilePicture.image = image as UIImage
             }
         }
         task.resume()
@@ -120,21 +116,24 @@ class SettingsTableViewController: UITableViewController, SPTAudioStreamingPlayb
     }
     
     func updateUsername() {
+        print("update useername")
         ref = Database.database().reference()
+        print(ref)
         let uid = Auth.auth().currentUser?.uid
-        ref.child("user").child(uid!).observe(.value) { (snapshot) in
-            if let user = snapshot.value as? [String: Any] {
-                self.nameLabel.text = user["username"] as? String
-                print(user["username"])
-            }
-        }
+        print(uid)
+        ref.child("users").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
+            let value = snapshot.value as? NSDictionary
+            let username = value?["username"] as? String ?? ""
+            self.nameLabel.text = username
+            print(username)
+        })
     }
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.rowHeight = 44;
         updateUsername()
+        self.tableView.rowHeight = 44;
         setup()
         
         
@@ -151,7 +150,9 @@ class SettingsTableViewController: UITableViewController, SPTAudioStreamingPlayb
             let firstTimeSession = NSKeyedUnarchiver.unarchiveObject(with: sessionDataObj) as! SPTSession
             self.session = firstTimeSession
             initializePlayer(authSession: session)
+            print("resuest token")
             requestToken()
+            print("fetch image")
             fetchImage()
         }
     }

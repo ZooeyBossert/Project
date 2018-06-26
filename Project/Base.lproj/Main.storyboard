@@ -91,6 +91,20 @@
                                 <rect key="frame" x="152" y="428" width="70" height="60"/>
                                 <state key="normal" title="Button" image="play-1"/>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zXJ-Qx-NPc">
+                                <rect key="frame" x="166" y="513" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="14g-7S-LWm">
+                                <rect key="frame" x="166" y="561" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -270,6 +284,11 @@
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </state>
                                         </button>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8DN-Sn-JlD">
+                                            <rect key="frame" x="160" y="416" width="54" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Preview"/>
+                                        </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="kMT-n2-U6U" firstAttribute="centerX" secondItem="51e-KV-1kp" secondAttribute="centerX" id="3bC-QM-5ob"/>
@@ -300,6 +319,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="IxB-3L-VVT"/>
                     </view>
+                    <connections>
+                        <outlet property="addButton" destination="wPR-jj-Arr" id="8He-SZ-j3c"/>
+                        <outlet property="artistLabel" destination="dJ7-MH-2kz" id="w3p-U1-FPc"/>
+                        <outlet property="backgroundImage" destination="wqE-kX-Jtb" id="Bea-oI-Lh5"/>
+                        <outlet property="mainImage" destination="kMT-n2-U6U" id="Skg-Hb-Gnv"/>
+                        <outlet property="previewButton" destination="8DN-Sn-JlD" id="93E-sM-hNo"/>
+                        <outlet property="titelLabel" destination="7Sf-F7-2i6" id="42W-RQ-SeH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DVM-lA-YXC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

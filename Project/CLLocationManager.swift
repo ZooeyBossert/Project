@@ -41,13 +41,13 @@ class UserLocationManager: NSObject, CLLocationManagerDelegate {
     func locationManager(manager: CLLocationManager,didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation) {
         currentLocation = newLocation
         let userInfo : NSDictionary = ["location" : currentLocation!]
-        
+        print("gekregen")
         
         DispatchQueue.main.async() { () -> Void in
             self.delegate.locationDidUpdateToLocation(self.currentLocation!)
             NotificationCenter.default.post(name: Notification.Name(kLocationDidChangeNotification), object: self, userInfo: userInfo as [NSObject : AnyObject])
         }
-        
+        print("verwerken")
         // Update Database
         let ref = Database.database().reference()
         let uid = Auth.auth().currentUser?.uid

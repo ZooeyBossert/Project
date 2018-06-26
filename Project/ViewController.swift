@@ -13,13 +13,15 @@ import FirebaseUI
 import FirebaseAuth
 import FirebaseDatabase
 
-class ViewController: UIViewController, LocationUpdateProtocol {
+class ViewController: UIViewController, LocationUpdateProtocol{
     
     // Ref to database
     var ref: DatabaseReference!
     
     // Create current location var
     var currentLocation : CLLocation!
+    
+    let notificationName = NSNotification.Name(rawValue: kLocationDidChangeNotification)
     
     // Reference to Firebase auth view controller
     let authViewController = FUIAuth.defaultAuthUI()?.authViewController()
@@ -54,14 +56,17 @@ class ViewController: UIViewController, LocationUpdateProtocol {
         }
     }
     
+    // Deze doet die volledig
     func locationNotification() {
-        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.locationUpdateNotification(_:)), name: NSNotification.Name(rawValue: kLocationDidChangeNotification), object: nil)
-
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.locationUpdateNotification(_:)), name: notificationName, object: nil)
+        NotificationCenter.default.post(name: notificationName, object: nil)
         let LocationMgr = UserLocationManager.SharedManager
-        LocationMgr.delegate = self as! LocationUpdateProtocol
+        LocationMgr.delegate = self as LocationUpdateProtocol
     }
 
+    // hiet gaat de fout
     @objc func locationUpdateNotification(_ notification: Notification) {
+        print("locnot")
         let userinfo = notification.userInfo
         self.currentLocation = userinfo!["location"] as! CLLocation
         print("Latitude : \(self.currentLocation.coordinate.latitude)")
@@ -69,8 +74,8 @@ class ViewController: UIViewController, LocationUpdateProtocol {
     }
 
     // MARK: - LocationUpdateProtocol
-
-    func locationDidUpdateToLocation(_ location: CLLocation) {
+        func locationDidUpdateToLocation(_ location: CLLocation) {
+        print("update loc")
         currentLocation = location
         print("Latitude : \(self.currentLocation.coordinate.latitude)")
         print("Longitude : \(self.currentLocation.coordinate.longitude)")

@@ -31,7 +31,7 @@ class SearchViewController: UIViewController {
     //MARK: - Functions
     @IBAction func searchButtonPressed(_ sender: UIButton) {
         submitSearch { (results)  in
-            self.result = results! as! [TrackItem]
+            self.result = results! 
             self.performSegue(withIdentifier: "SearchSegue", sender: self)
         }
     }
@@ -39,7 +39,7 @@ class SearchViewController: UIViewController {
     func submitSearch(completion: @escaping ([TrackItem]?) -> Void) {
         
         // create baseurl and add in other function the search request
-        var first = qTextField.text
+        let first = qTextField.text
 
         // TODO: check first and second
         let q = first!.lowercased().addingASCIIEntities
@@ -53,7 +53,7 @@ class SearchViewController: UIViewController {
         request.httpMethod = "GET"
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue("Bearer \(token)", forHTTPHeaderField: "Autherization")
+        request.setValue("Bearer \(String(describing: token))", forHTTPHeaderField: "Autherization")
         
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             let jsonDecoder = JSONDecoder()

@@ -9,6 +9,8 @@
 import Foundation
 
 struct TrackItem: Codable {
+    static var shared: TrackItem?
+    
     var album: AlbumItem
     var artists: [String] //array of artist objects simpl
     var disc_number: Int

@@ -11,6 +11,9 @@
 		63005CC220D27D50001B22BB /* FirebaseCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63005CC120D27D50001B22BB /* FirebaseCore.framework */; };
 		63005CC420D27D50001B22BB /* FirebaseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63005CC320D27D50001B22BB /* FirebaseUI.framework */; };
 		6337174320E0F5C60011DB72 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6337174220E0F5C60011DB72 /* MapKit.framework */; };
+		6337174520E2632A0011DB72 /* ImageObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6337174420E2632A0011DB72 /* ImageObject.swift */; };
+		6337174720E263FE0011DB72 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6337174620E263FE0011DB72 /* UserProfile.swift */; };
+		6337174B20E2AEAC0011DB72 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6337174A20E2AEAC0011DB72 /* CoreLocation.framework */; };
 		6346CE4220D94CB7006E0A4C /* ItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6346CE4120D94CB7006E0A4C /* ItemViewController.swift */; };
 		6346CE4420DA74AF006E0A4C /* ConnectionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6346CE4320DA74AF006E0A4C /* ConnectionsViewController.swift */; };
 		6346CE4620DB9ADE006E0A4C /* CLLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6346CE4520DB9ADE006E0A4C /* CLLocationManager.swift */; };
@@ -74,6 +77,9 @@
 		63005CC820D28EC7001B22BB /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		63005CCA20D28EC7001B22BB /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6337174220E0F5C60011DB72 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		6337174420E2632A0011DB72 /* ImageObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageObject.swift; sourceTree = "<group>"; };
+		6337174620E263FE0011DB72 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
+		6337174A20E2AEAC0011DB72 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		6346CE4120D94CB7006E0A4C /* ItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewController.swift; sourceTree = "<group>"; };
 		6346CE4320DA74AF006E0A4C /* ConnectionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionsViewController.swift; sourceTree = "<group>"; };
 		6346CE4520DB9ADE006E0A4C /* CLLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLLocationManager.swift; sourceTree = "<group>"; };
@@ -129,6 +135,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6337174B20E2AEAC0011DB72 /* CoreLocation.framework in Frameworks */,
 				6337174320E0F5C60011DB72 /* MapKit.framework in Frameworks */,
 				63005CC020D27D50001B22BB /* FirebaseAuth.framework in Frameworks */,
 				63005CC220D27D50001B22BB /* FirebaseCore.framework in Frameworks */,
@@ -169,8 +176,10 @@
 				63C796DF20D7D9FC00B622B4 /* AlbumItem.swift */,
 				63C796E120D7DA1200B622B4 /* ArtistItem.swift */,
 				63C796E720D7E70B00B622B4 /* ExternalURLItem.swift */,
+				6337174420E2632A0011DB72 /* ImageObject.swift */,
 				63AB4E3C20D153D500B0F37C /* TokenItem.swift */,
 				63C796E320D7DA2700B622B4 /* TrackItem.swift */,
+				6337174620E263FE0011DB72 /* UserProfile.swift */,
 				63C796E520D7DA5200B622B4 /* PlaylistItem.swift */,
 			);
 			path = Structs;
@@ -249,6 +258,7 @@
 		63D7A76620C94FF80010B798 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6337174A20E2AEAC0011DB72 /* CoreLocation.framework */,
 				6337174220E0F5C60011DB72 /* MapKit.framework */,
 				63005CC820D28EC7001B22BB /* FBSDKCoreKit.framework */,
 				63005CCA20D28EC7001B22BB /* FBSDKLoginKit.framework */,
@@ -536,11 +546,13 @@
 				63C796E220D7DA1200B622B4 /* ArtistItem.swift in Sources */,
 				63C796E020D7D9FC00B622B4 /* AlbumItem.swift in Sources */,
 				63C796E820D7E70B00B622B4 /* ExternalURLItem.swift in Sources */,
+				6337174520E2632A0011DB72 /* ImageObject.swift in Sources */,
 				63D7A76520C93EAC0010B798 /* ResultTableViewController.swift in Sources */,
 				6346CE4820DBAC3B006E0A4C /* PlayerViewController.swift in Sources */,
 				6346CE4420DA74AF006E0A4C /* ConnectionsViewController.swift in Sources */,
 				63C796E620D7DA5200B622B4 /* PlaylistItem.swift in Sources */,
 				63D7A75D20C806140010B798 /* SettingsTableViewController.swift in Sources */,
+				6337174720E263FE0011DB72 /* UserProfile.swift in Sources */,
 				6346CE4620DB9ADE006E0A4C /* CLLocationManager.swift in Sources */,
 				63D7A72920C538270010B798 /* AppDelegate.swift in Sources */,
 				63C796DE20D7D04C00B622B4 /* SearchViewController.swift in Sources */,
