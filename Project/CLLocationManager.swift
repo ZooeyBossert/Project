@@ -8,6 +8,9 @@
 
 import Foundation
 import MapKit
+import Firebase
+import FirebaseDatabase
+import FirebaseUI
 
 protocol LocationUpdateProtocol {
     func locationDidUpdateToLocation(_ location : CLLocation)
@@ -44,7 +47,17 @@ class UserLocationManager: NSObject, CLLocationManagerDelegate {
             self.delegate.locationDidUpdateToLocation(self.currentLocation!)
             NotificationCenter.default.post(name: Notification.Name(kLocationDidChangeNotification), object: self, userInfo: userInfo as [NSObject : AnyObject])
         }
-        // update firebase with new location!!
+        
+        // Update Database
+        let ref = Database.database().reference()
+        let uid = Auth.auth().currentUser?.uid
+        let latitude = self.currentLocation?.coordinate.latitude
+        let longitude = self.currentLocation?.coordinate.longitude
+        let addUID = ref.child("users").child(uid!)
+        let addLatChild = ref.child("users").child(uid!).child("latitude")
+        addLatChild.setValue(latitude)
+        let addLongChild = ref.child("users").child(uid!).child("longitude")
+        addLongChild.setValue(longitude)
     }
     
 }

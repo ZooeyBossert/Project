@@ -12,19 +12,23 @@ import Firebase
 import FirebaseDatabase
 import FirebaseUI
 
-class SettingsTableViewController: UITableViewController {
+class SettingsTableViewController: UITableViewController, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamingDelegate {
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var profilePicture: UIImageView!
     @IBOutlet weak var logOutButton: UIButton!
     
     var ref: DatabaseReference!
+    
+    // Spotify login variables
     var auth = SPTAuth.defaultInstance()!
     var session:SPTSession!
     var player: SPTAudioStreamingController?
     var loginUrl: URL?
     // Define identifier
     let notificationName = Notification.Name("LoggedIn")
+    
+    var seen = false
     
     let baseURL = URL(string: "https://accounts.spotify.com/authorize")!
 
@@ -44,12 +48,8 @@ class SettingsTableViewController: UITableViewController {
     
     func requestToken(){
         var components = URLComponents(url: baseURL, resolvingAgainstBaseURL: true)!
-        print("\n")
-        print(components)
         components.queryItems = [URLQueryItem(name: "client_id", value: auth.clientID), URLQueryItem(name: "response_type", value: "code"), URLQueryItem(name: "redirect_uri", value: "auth.redirectURL")]
         let requestURL = components.url!
-        print("\n")
-        print(requestURL)
         
         let task = URLSession.shared.dataTask(with: requestURL) { (data, response, error) in
             let jsonDecoder = JSONDecoder()
@@ -57,31 +57,41 @@ class SettingsTableViewController: UITableViewController {
                 let tokenItem = try? jsonDecoder.decode(TokenItem.self, from: data) {
                 TokenItem.shared = tokenItem
                 print(tokenItem)
+                let uid = Auth.auth().currentUser?.uid
+                let addToken = self.ref.child("users").child(uid!).child("access_token")
+                addToken.setValue(TokenItem.shared?.access_token)
             }
-        let uid = Auth.auth().currentUser?.uid
-        let addToken = self.ref.child("users").child(uid!).child("access_token")
-        addToken.setValue(TokenItem.shared?.access_token)
         }
     }
     
     
     @IBAction func LoginButtonPressed(_ sender: Any) {
-        if UIApplication.shared.openURL(loginUrl!) {
-            if auth.canHandle(auth.redirectURL) {
-                // To do - build in error handling
+//        if UIApplication.shared.openURL(loginUrl!) {
+//            if auth.canHandle(auth.redirectURL) {
+//                // als niet goede url error melding geven
+//            }
+//        }
+        if seen == false {
+            if UIApplication.shared.openURL(loginUrl!) {
+                seen = true
+                if auth.canHandle(auth.redirectURL) {
+                    // To do - build in error handling
+                }
             }
+        } else {
+            NotificationCenter.default.addObserver(self, selector: #selector(SettingsTableViewController.updateAfterFirstLogin), name: notificationName, object: nil)
         }
     }
-        
-    func audioStreamingDidLogin(_ audioStreaming: SPTAudioStreamingController!) {
-        // after a user authenticates a session, the SPTAudioStreamingController is then initialized and this method called
-        print("logged in")
-        self.player?.playSpotifyURI("spotify:track:58s6EuEYJdlb0kO7awm3Vp", startingWith: 0, startingWithPosition: 0, callback: { (error) in
-            if (error != nil) {
-                print("playing!")
-            }
-        })
-    }
+    
+//    function om audio te streamen
+//    func audioStreamingDidLogin(_ audioStreaming: SPTAudioStreamingController!) {
+//        // after a user authenticates a session, the SPTAudioStreamingController is then initialized and this method called
+//        self.player?.playSpotifyURI("spotify:track:58s6EuEYJdlb0kO7awm3Vp", startingWith: 0, startingWithPosition: 0, callback: { (error) in
+//            if (error != nil) {
+//                print("playing!")
+//            }
+//        })
+//    }
     
     func fetchImage() {
         let imageURL = URL(string: "https://api.spotify.com/v1/me")
@@ -100,19 +110,34 @@ class SettingsTableViewController: UITableViewController {
         task.resume()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if seen == true {
+            NotificationCenter.default.addObserver(self, selector: #selector(SettingsTableViewController.updateAfterFirstLogin), name: notificationName, object: nil)
+            NotificationCenter.default.post(name: notificationName, object: nil)
+            
+        }
+    }
+    
+    func updateUsername() {
+        ref = Database.database().reference()
+        let uid = Auth.auth().currentUser?.uid
+        ref.child("user").child(uid!).observe(.value) { (snapshot) in
+            if let user = snapshot.value as? [String: Any] {
+                self.nameLabel.text = user["username"] as? String
+                print(user["username"])
+            }
+        }
+    }
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.rowHeight = 44;
-        // TODO: - update username label
-//        ref = Database.database().reference()
-//        let uid = Auth.auth().currentUser?.uid
-//        ref.child("user").child(uid!).observe(.value) { (snapshot) in
-//            let user = snapshot.value as! [String: String]
-//            self.nameLabel.text = user["username"] as? String
-//        }
+        updateUsername()
         setup()
-        NotificationCenter.default.addObserver(self, selector: #selector(SettingsTableViewController.updateAfterFirstLogin), name: notificationName, object: nil)
-
+        
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -120,16 +145,13 @@ class SettingsTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
-    // TODO: - hij komt niet eens hier
     @objc func updateAfterFirstLogin () {
         if let sessionObj:AnyObject = UserDefaults.standard.object(forKey: "SpotifySession") as AnyObject? {
             let sessionDataObj = sessionObj as! Data
             let firstTimeSession = NSKeyedUnarchiver.unarchiveObject(with: sessionDataObj) as! SPTSession
             self.session = firstTimeSession
             initializePlayer(authSession: session)
-            print("token requesten \n")
             requestToken()
-            print("token binnen")
             fetchImage()
         }
     }

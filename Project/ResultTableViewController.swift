@@ -10,7 +10,7 @@ import UIKit
 
 class ResultTableViewController: UITableViewController {
     
-    var results = [ResultItem]()
+    var results = [TrackItem]()
     var type: String = ""
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

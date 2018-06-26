@@ -13,7 +13,7 @@ import FirebaseUI
 import FirebaseAuth
 import FirebaseDatabase
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, LocationUpdateProtocol {
     
     // Ref to database
     var ref: DatabaseReference!
@@ -35,7 +35,7 @@ class ViewController: UIViewController {
             present(authViewController!, animated: true, completion: nil)
             seen = true
         } else {
-//            locationNotification()
+            locationNotification()
             userSave()
             performSegue(withIdentifier: "LoggedInSegue", sender: self)
         }
@@ -54,32 +54,31 @@ class ViewController: UIViewController {
         }
     }
     
-//    func locationNotification() {
-//        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.locationUpdateNotification(_:)), name: NSNotification.Name(rawValue: kLocationDidChangeNotification), object: nil)
-//
-//        let LocationMgr = UserLocationManager.SharedManager
-//        LocationMgr.delegate = self as! LocationUpdateProtocol
-//    }
-//
-//    @objc func locationUpdateNotification(_ notification: Notification) {
-//        let userinfo = notification.userInfo
-//        self.currentLocation = userinfo!["location"] as! CLLocation
-//        print("Latitude : \(self.currentLocation.coordinate.latitude)")
-//        print("Longitude : \(self.currentLocation.coordinate.longitude)")
-//
-//    }
-//
-//    // MARK: - LocationUpdateProtocol
-//
-//    func locationDidUpdateToLocation(_ location: CLLocation) {
-//        currentLocation = location
-//        print("Latitude : \(self.currentLocation.coordinate.latitude)")
-//        print("Longitude : \(self.currentLocation.coordinate.longitude)")
-//    }
+    func locationNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.locationUpdateNotification(_:)), name: NSNotification.Name(rawValue: kLocationDidChangeNotification), object: nil)
+
+        let LocationMgr = UserLocationManager.SharedManager
+        LocationMgr.delegate = self as! LocationUpdateProtocol
+    }
+
+    @objc func locationUpdateNotification(_ notification: Notification) {
+        let userinfo = notification.userInfo
+        self.currentLocation = userinfo!["location"] as! CLLocation
+        print("Latitude : \(self.currentLocation.coordinate.latitude)")
+        print("Longitude : \(self.currentLocation.coordinate.longitude)")
+    }
+
+    // MARK: - LocationUpdateProtocol
+
+    func locationDidUpdateToLocation(_ location: CLLocation) {
+        currentLocation = location
+        print("Latitude : \(self.currentLocation.coordinate.latitude)")
+        print("Longitude : \(self.currentLocation.coordinate.longitude)")
+    }
     
     func authUI(_ authUI: FUIAuth, didSignInWith user: User?, error: Error?) {
         // handle user and error as necessary ???!!!
-//        locationNotification()
+        locationNotification()
         userSave()
         performSegue(withIdentifier: "LoggedInSegue", sender: self)
     }

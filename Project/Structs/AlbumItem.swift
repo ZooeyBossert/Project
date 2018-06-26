@@ -7,11 +7,8 @@
 //
 
 import Foundation
-protocol ResultItem {
-    
-}
 
-struct AlbumItem: ResultItem, Codable {
+struct AlbumItem: Codable {
     var album_type: String
     var artists: [String] // ook lijst van simplefied objecten
     var external_urls: [ExternalURL]

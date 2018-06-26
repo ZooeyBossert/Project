@@ -9,7 +9,12 @@
 import UIKit
 
 class PlayerViewController: UIViewController {
-
+    
+    @IBOutlet weak var musicImage: UIImageView!
+    @IBOutlet weak var playPauseButton: UIButton!
+    @IBOutlet weak var forwardButton: UIButton!
+    @IBOutlet weak var reverseButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

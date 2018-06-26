@@ -16,7 +16,7 @@ class ConnectionsViewController: UIViewController {
     override func loadView() {
         // Create a GMSCameraPosition that tells the map to display the
         // coordinate -33.86,151.20 at zoom level 6.
-        let camera = GMSCameraPosition.camera(withLatitude: 52.3702, longitude: 4.8952, zoom: 8.0)
+        let camera = GMSCameraPosition.camera(withLatitude: 52.3702, longitude: 4.8952, zoom: 11.0)
         let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
         view = mapView
         
@@ -27,6 +27,16 @@ class ConnectionsViewController: UIViewController {
         marker.snippet = "Australia"
         marker.map = mapView
     }
+    
+//    // Create Markers
+//    func createMarker(titleMarker: String, iconMarker: UIImage, latitude: Float, longitude: Float) {
+//        let marker = GMSMarker()
+//        let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
+//        marker.position = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+//        marker.title = titleMarker
+//        marker.icon = iconMarker
+//        marker.map = mapView
+//    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

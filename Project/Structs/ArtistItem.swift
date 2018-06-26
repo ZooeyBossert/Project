@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct ArtistItem: ResultItem, Codable {
+struct ArtistItem: Codable {
     var external_urls: [ExternalURL]
     var genre: [String]
     var href: String

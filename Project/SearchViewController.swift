@@ -17,7 +17,7 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var searchButton: UIButton!
     
     // Create empty string
-    var result = [ResultItem]()
+    var result = [TrackItem]()
     var finalType = ""
     
     typealias JSONStandard = [String: AnyObject]
@@ -30,26 +30,20 @@ class SearchViewController: UIViewController {
     
     //MARK: - Functions
     @IBAction func searchButtonPressed(_ sender: UIButton) {
-        submitSearch { (results, type) in
-            self.result = results!
-            self.finalType  = type
+        submitSearch { (results)  in
+            self.result = results! as! [TrackItem]
             self.performSegue(withIdentifier: "SearchSegue", sender: self)
         }
     }
 
-    func submitSearch(completion: @escaping ([ResultItem]?, String) -> Void) {
+    func submitSearch(completion: @escaping ([TrackItem]?) -> Void) {
         
         // create baseurl and add in other function the search request
         var first = qTextField.text
-        var second = typeTextField.text
 
         // TODO: check first and second
         let q = first!.lowercased().addingASCIIEntities
-        print("\n")
-        print(q)
-        let type = second!.lowercased()
-        print("\n")
-        print(type)
+        let type = "track"
 
         var components = URLComponents(url: baseURL!, resolvingAgainstBaseURL: true)!
         components.queryItems = [URLQueryItem(name: "q", value: q), URLQueryItem(name: "type", value: type)]
@@ -64,23 +58,8 @@ class SearchViewController: UIViewController {
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             let jsonDecoder = JSONDecoder()
             if let data = data {
-                if type == "album",
-                    let albumItem = try? jsonDecoder.decode(AlbumItems.self, from: data) {
-                    completion(albumItem.items, type)
-                }
-                if type == "artist",
-                    let artistItem = try? jsonDecoder.decode(ArtistItems.self, from: data) {
-                    completion(artistItem.items, type)
-                }
-                if type == "track",
-                    let trackItem = try? jsonDecoder.decode(TrackItems.self, from: data) {
-                    completion(trackItem.items, type)
-                }
-                if type == "playlist",
-                    let playlistItem = try? jsonDecoder.decode(PlaylistItems.self, from: data) {
-                    completion(playlistItem.items, type)
-                } else {
-                    completion(nil, "")
+                    if let trackItem = try? jsonDecoder.decode(TrackItems.self, from: data) {
+                    completion(trackItem.items)
                 }
             }
         }
@@ -92,7 +71,7 @@ class SearchViewController: UIViewController {
         if segue.identifier == "SearchSegue" {
             let resultTableViewController = segue.destination as! ResultTableViewController
             resultTableViewController.results = self.result
-            resultTableViewController.type = self.finalType
+            
         }
     }
     

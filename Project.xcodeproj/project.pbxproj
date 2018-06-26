@@ -10,6 +10,7 @@
 		63005CC020D27D50001B22BB /* FirebaseAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63005CBF20D27D50001B22BB /* FirebaseAuth.framework */; };
 		63005CC220D27D50001B22BB /* FirebaseCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63005CC120D27D50001B22BB /* FirebaseCore.framework */; };
 		63005CC420D27D50001B22BB /* FirebaseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63005CC320D27D50001B22BB /* FirebaseUI.framework */; };
+		6337174320E0F5C60011DB72 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6337174220E0F5C60011DB72 /* MapKit.framework */; };
 		6346CE4220D94CB7006E0A4C /* ItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6346CE4120D94CB7006E0A4C /* ItemViewController.swift */; };
 		6346CE4420DA74AF006E0A4C /* ConnectionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6346CE4320DA74AF006E0A4C /* ConnectionsViewController.swift */; };
 		6346CE4620DB9ADE006E0A4C /* CLLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6346CE4520DB9ADE006E0A4C /* CLLocationManager.swift */; };
@@ -72,6 +73,7 @@
 		63005CC720D28CDA001B22BB /* Project.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Project.entitlements; sourceTree = "<group>"; };
 		63005CC820D28EC7001B22BB /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		63005CCA20D28EC7001B22BB /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6337174220E0F5C60011DB72 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		6346CE4120D94CB7006E0A4C /* ItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewController.swift; sourceTree = "<group>"; };
 		6346CE4320DA74AF006E0A4C /* ConnectionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionsViewController.swift; sourceTree = "<group>"; };
 		6346CE4520DB9ADE006E0A4C /* CLLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLLocationManager.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6337174320E0F5C60011DB72 /* MapKit.framework in Frameworks */,
 				63005CC020D27D50001B22BB /* FirebaseAuth.framework in Frameworks */,
 				63005CC220D27D50001B22BB /* FirebaseCore.framework in Frameworks */,
 				63005CC420D27D50001B22BB /* FirebaseUI.framework in Frameworks */,
@@ -246,6 +249,7 @@
 		63D7A76620C94FF80010B798 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6337174220E0F5C60011DB72 /* MapKit.framework */,
 				63005CC820D28EC7001B22BB /* FBSDKCoreKit.framework */,
 				63005CCA20D28EC7001B22BB /* FBSDKLoginKit.framework */,
 				63005CBF20D27D50001B22BB /* FirebaseAuth.framework */,
