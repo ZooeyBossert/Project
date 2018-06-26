@@ -67,7 +67,13 @@ The token is requested without error. And the location manager is implemented wi
 This is also the case for the location. I decided that you can only search for tracks otherwise i am not sure it will all be done before
 the deadline.
 
+## 26 June
 
+I fixed the name label of the profile. I found out that getten the acces token is still not fixed because I did not read the description 
+right. I still dont know exactly how is works so I hope to get that tomorrow totally fixed. Furthermore I am a bit further with the 
+location but found a bug so that I also have to ask tomorrow. I updated the player view and put down on paper what I want to do it. I hope 
+to fix that tomorrow, but I still cant test anything since the token is not fixed. I have got some more ideas if I had some more time, but 
+still is nice to put it in the report I think. 
 
 
 
