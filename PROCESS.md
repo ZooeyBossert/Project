@@ -61,6 +61,20 @@ API. I want to insert the location manager tomorrow and fix the JSON and finally
 Finished the search and implemented the location manager. However just found out that the acces token is not requested or recieved. Now I
 cannot check the search ans the visualization of it... So now I'm going to cry in my bed!
 
+## 25 June
+
+The token is requested without error. And the location manager is implemented without error. However its not saved in de the database. 
+This is also the case for the location. I decided that you can only search for tracks otherwise i am not sure it will all be done before
+the deadline.
+
+
+
+
+
+
+
+
+
 
 
 
