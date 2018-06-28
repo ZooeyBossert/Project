@@ -14,12 +14,18 @@ class PlayerViewController: UIViewController {
     var auth = SPTAuth.defaultInstance()!
     var session: SPTSession!
     var player: SPTAudioStreamingController?
+    // variablen track en playlist maken en variablen van currentsong
+    var track: Int = 0
+    var playlist = [MusicItem]()
+    var currentSong: Int = 0
     
     // MARK: - View Variables
     @IBOutlet weak var musicImage: UIImageView!
     @IBOutlet weak var playPauseButton: UIButton!
     @IBOutlet weak var forwardButton: UIButton!
     @IBOutlet weak var reverseButton: UIButton!
+    
+    // TODO: - van album image halen om te gebruiken (ook voor itemcontroller doen!!)
     
     var isPlaying: Bool = true {
         didSet {
@@ -33,17 +39,52 @@ class PlayerViewController: UIViewController {
         }
     }
     
-
-    //TODO: - make function foor stream and link playing var with button tapped link
-    //    function om audio te streamen
-        func audioStreamingDidLogin(_ audioStreaming: SPTAudioStreamingController!) {
-            // after a user authenticates a session, the SPTAudioStreamingController is then initialized and this method called
-            self.player?.playSpotifyURI("spotify:track:\(TrackItem.shared?.id)", startingWith: 0, startingWithPosition: 0, callback: { (error) in
+    @IBAction func playButtonPressed(_ sender: Any) {
+        if isPlaying == false{
+            let musicItem = playlist[track]
+            self.player?.playSpotifyURI("spotify:track:\(musicItem.id)", startingWith: 0, startingWithPosition: 0, callback: { (error) in
                 if (error != nil) {
                     print("playing!")
+                    self.currentSong = self.track
                 }
             })
+            isPlaying = true
+//            // als huidige nummer is afgelopen speel volgende af
+//            if self.player?..... {
+//                self.currentSong += 1
+//                let musicItem = playlist[currentSong]
+//                self.player?.playSpotifyURI("spotify:track:\(musicItem.id)", startingWith: 0, startingWithPosition: 0, callback: { (error) in
+//                    if (error != nil) {
+//                        print("play next song")
+//                    }
+//                })
+//            }
+        } else {
+            self.player?.setIsPlaying(false, callback: { (Error) in
+                print("pause")
+            })
         }
+    }
+    
+    @IBAction func reverseButtonPressed(_ sender: UIButton) {
+        self.currentSong -= 1
+        let musicItem = playlist[currentSong]
+        self.player?.playSpotifyURI("spotify:track:\(musicItem.id)", startingWith: 0, startingWithPosition: 0, callback: { (error) in
+            if (error != nil) {
+                print("play last song")
+            }
+        })
+    }
+    
+    @IBAction func forwardButtonPressed(_ sender: UIButton) {
+        self.currentSong += 1
+        let musicItem = playlist[currentSong]
+        self.player?.playSpotifyURI("spotify:track:\(musicItem.id)", startingWith: 0, startingWithPosition: 0, callback: { (error) in
+            if (error != nil) {
+                print("play next song")
+            }
+        })
+    }
     
     func initializePlayer(authSession:SPTSession){
         if self.player == nil {

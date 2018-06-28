@@ -6,6 +6,7 @@
 //  Copyright © 2018 Zooey Bossert. All rights reserved.
 //
 
+import Foundation
 import UIKit
 import Firebase
 import FirebaseUI
@@ -16,6 +17,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var auth = SPTAuth()
+    var session: SPTSession!
+    
+    var ref: DatabaseReference!
+    
+    static var accessToken: String = ""
     
     override init() {
         super.init()
@@ -35,6 +41,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Spotify login
         auth.redirectURL     = URL(string: "Project://returnAfterLogin")
         auth.sessionUserDefaultsKey = "current session"
+        auth.requestedScopes = [SPTAuthStreamingScope, SPTAuthPlaylistReadPrivateScope, SPTAuthPlaylistModifyPublicScope,
+                                SPTAuthPlaylistModifyPrivateScope, SPTAuthUserReadPrivateScope]
         return true
     }
     
@@ -58,6 +66,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return true
         }
         return false
+    }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        let stringURL = "\(url)"
+        var queryPartlySep = stringURL.components(separatedBy: "=")
+        for char in queryPartlySep[1] {
+            if char != "&" {
+                AppDelegate.accessToken.append(char)
+            } else {
+                break
+            }
+        }
+        return true
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

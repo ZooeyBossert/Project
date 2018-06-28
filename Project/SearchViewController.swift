@@ -7,23 +7,42 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseCore
+import FirebaseAuth
 import HTMLString
+import Alamofire
 
 class SearchViewController: UIViewController {
 
     //MARK : - Variables
     @IBOutlet weak var qTextField: UITextField!
-    @IBOutlet weak var typeTextField: UITextField!
     @IBOutlet weak var searchButton: UIButton!
     
     // Create empty string
-    var result = [TrackItem]()
-    var finalType = ""
+    var results = [TrackItem]()
+    var ref: DatabaseReference!
+    
+    var auth = SPTAuth.defaultInstance()!
+    var user: SPTUser!
+    var search: SPTSearch!
+    var session: SPTSession!
+    var loginUrl: URL?
     
     typealias JSONStandard = [String: AnyObject]
     
+    var token: String = ""
+    
     // Get access token
-    let token = TokenItem.shared?.access_token
+    func getToken(){
+        ref = Database.database().reference()
+        let uid = Auth.auth().currentUser?.uid
+        ref.child("users").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
+            let value = snapshot.value as? NSDictionary
+            let accessToken = value?["access_token"] as? String ?? ""
+            self.token = accessToken
+        })
+    }
     
     // Create baseURL for the search
     var baseURL = URL(string: "https://api.spotify.com/v1/search")
@@ -31,13 +50,18 @@ class SearchViewController: UIViewController {
     //MARK: - Functions
     @IBAction func searchButtonPressed(_ sender: UIButton) {
         submitSearch { (results)  in
-            self.result = results! 
+            self.results = results!
+            print(self.results)
             self.performSegue(withIdentifier: "SearchSegue", sender: self)
         }
     }
-
+    
+//    func searchTrack() {
+//        search(URLRequest()).create
+//    }
+    
     func submitSearch(completion: @escaping ([TrackItem]?) -> Void) {
-        
+
         // create baseurl and add in other function the search request
         let first = qTextField.text
 
@@ -48,35 +72,63 @@ class SearchViewController: UIViewController {
         var components = URLComponents(url: baseURL!, resolvingAgainstBaseURL: true)!
         components.queryItems = [URLQueryItem(name: "q", value: q), URLQueryItem(name: "type", value: type)]
         let searchURL = components.url!
-        
+
         var request = URLRequest(url: searchURL)
         request.httpMethod = "GET"
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue("Bearer \(String(describing: token))", forHTTPHeaderField: "Autherization")
-        
+        request.setValue("Bearer \(self.token))", forHTTPHeaderField: "Authorization")
+        print(request.allHTTPHeaderFields)
+        print(request.debugDescription)
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            let jsonDecoder = JSONDecoder()
-            if let data = data {
-                    if let trackItem = try? jsonDecoder.decode(TrackItems.self, from: data) {
-                    completion(trackItem.items)
-                }
-            }
+            let data = data
+            
+            let datastring = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)!
+            let trackItem =
+//            let data = datastring.data(using: String.Encoding.utf8.rawValue, allowLossyConversion: false)
+//            let jsonDecoder = JSONDecoder()
+//            if let data = data,
+//                let trackItem = try? jsonDecoder.decode(TrackItems.self, from: data) {
+//                print(trackItem.items)
+                completion(data)
+//            }
         }
         task.resume()
     }
+    
+        func setup() {
+            auth.clientID = "fe10c4ee20a14c74b6192b7973395153"
+            auth.redirectURL = URL(string: "Project://returnAfterLogin")
+            auth.requestedScopes = [SPTAuthStreamingScope, SPTAuthPlaylistReadPrivateScope, SPTAuthPlaylistModifyPublicScope,
+                                    SPTAuthPlaylistModifyPrivateScope, SPTAuthUserReadPrivateScope]
+            loginUrl = auth.spotifyWebAuthenticationURL()
+        }
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SearchSegue" {
             let resultTableViewController = segue.destination as! ResultTableViewController
-            resultTableViewController.results = self.result
+            resultTableViewController.results = self.results
             
         }
     }
     
+    //            if let data = data{
+    ////                let datastring = NSString(data: data, encoding: String.Encoding.utf8.rawValue)!
+    //                let data : NSData = data.data(using: String.Encoding.utf8.rawValue)! as NSData
+    //                let trackItems = try? jsonDecoder.decode(TrackItems.self, from: data as Data)
+    //                print(trackItems!)
+    //                completion(trackItems?.items)
+    //            }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        getToken()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setup()
         // Do any additional setup after loading the view.
     }
 

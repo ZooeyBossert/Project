@@ -13,16 +13,14 @@ import FirebaseUI
 import FirebaseAuth
 import FirebaseDatabase
 
-class ViewController: UIViewController, LocationUpdateProtocol{
+class ViewController: UIViewController, CLLocationManagerDelegate{
     
     // Ref to database
     var ref: DatabaseReference!
     
     // Create current location var
-    var currentLocation : CLLocation!
-    
-    let notificationName = NSNotification.Name(rawValue: kLocationDidChangeNotification)
-    
+    var locationManager:CLLocationManager!
+
     // Reference to Firebase auth view controller
     let authViewController = FUIAuth.defaultAuthUI()?.authViewController()
     var seen = false
@@ -37,10 +35,46 @@ class ViewController: UIViewController, LocationUpdateProtocol{
             present(authViewController!, animated: true, completion: nil)
             seen = true
         } else {
-            locationNotification()
             userSave()
             performSegue(withIdentifier: "LoggedInSegue", sender: self)
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        determineMyCurrentLocation()
+    }
+    
+    func determineMyCurrentLocation() {
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestAlwaysAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.startUpdatingLocation()
+            //locationManager.startUpdatingHeading()
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let userLocation:CLLocation = locations[0] as CLLocation
+        
+        // Update Database
+        let ref = Database.database().reference()
+        let uid = Auth.auth().currentUser?.uid
+        let latitude = userLocation.coordinate.latitude
+        let longitude = userLocation.coordinate.latitude
+        let addLatChild = ref.child("users").child(uid!).child("latitude")
+        addLatChild.setValue(latitude)
+        let addLongChild = ref.child("users").child(uid!).child("longitude")
+        addLongChild.setValue(longitude)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error)
+    {
+        print("Error \(error)")
     }
     
     func userSave() {
@@ -48,7 +82,6 @@ class ViewController: UIViewController, LocationUpdateProtocol{
             ref = Database.database().reference()
             let uid = Auth.auth().currentUser?.uid
             let username = Auth.auth().currentUser?.displayName
-            let addUID = ref.child("users").child(uid!)
             let addNameChild = ref.child("users").child(uid!).child("username")
             addNameChild.setValue(username!)
         } else {
@@ -56,34 +89,9 @@ class ViewController: UIViewController, LocationUpdateProtocol{
         }
     }
     
-    // Deze doet die volledig
-    func locationNotification() {
-        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.locationUpdateNotification(_:)), name: notificationName, object: nil)
-        NotificationCenter.default.post(name: notificationName, object: nil)
-        let LocationMgr = UserLocationManager.SharedManager
-        LocationMgr.delegate = self as LocationUpdateProtocol
-    }
 
-    // hiet gaat de fout
-    @objc func locationUpdateNotification(_ notification: Notification) {
-        print("locnot")
-        let userinfo = notification.userInfo
-        self.currentLocation = userinfo!["location"] as! CLLocation
-        print("Latitude : \(self.currentLocation.coordinate.latitude)")
-        print("Longitude : \(self.currentLocation.coordinate.longitude)")
-    }
 
-    // MARK: - LocationUpdateProtocol
-        func locationDidUpdateToLocation(_ location: CLLocation) {
-        print("update loc")
-        currentLocation = location
-        print("Latitude : \(self.currentLocation.coordinate.latitude)")
-        print("Longitude : \(self.currentLocation.coordinate.longitude)")
-    }
-    
     func authUI(_ authUI: FUIAuth, didSignInWith user: User?, error: Error?) {
-        // handle user and error as necessary ???!!!
-        locationNotification()
         userSave()
         performSegue(withIdentifier: "LoggedInSegue", sender: self)
     }

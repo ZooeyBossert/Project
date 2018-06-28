@@ -82,14 +82,23 @@
                                     <constraint firstAttribute="width" constant="70" id="9y6-jg-TUv"/>
                                 </constraints>
                                 <state key="normal" title="Button" image="reverse"/>
+                                <connections>
+                                    <action selector="reverseButtonPressed:" destination="Jb1-4g-gv9" eventType="touchUpInside" id="SSz-Ux-qJB"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zw8-9t-ogH">
                                 <rect key="frame" x="257" y="428" width="70" height="60"/>
                                 <state key="normal" title="Button" image="forward"/>
+                                <connections>
+                                    <action selector="forwardButtonPressed:" destination="Jb1-4g-gv9" eventType="touchUpInside" id="C9c-gj-qbB"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5xb-Sb-4Z1">
                                 <rect key="frame" x="152" y="428" width="70" height="60"/>
                                 <state key="normal" title="Button" image="play-1"/>
+                                <connections>
+                                    <action selector="playButtonPressed:" destination="Jb1-4g-gv9" eventType="touchUpInside" id="u01-M7-32q"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zXJ-Qx-NPc">
                                 <rect key="frame" x="166" y="513" width="42" height="21"/>
@@ -158,37 +167,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nAP-mT-rWz">
-                                <rect key="frame" x="82" y="279" width="212" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Track/Artist/Album/Playlist" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ntg-ih-9mB">
-                                <rect key="frame" x="82" y="319" width="212" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Rx-KG-Dv4">
                                 <rect key="frame" x="163" y="369" width="48" height="30"/>
                                 <state key="normal" title="Search"/>
                                 <connections>
                                     <action selector="searchButtonPressed:" destination="a5h-ag-2Xg" eventType="touchUpInside" id="R4e-WM-iii"/>
-                                    <segue destination="ObA-MV-2Ig" kind="show" identifier="SearchSegue" id="ZTw-9P-U96"/>
+                                    <segue destination="ObA-MV-2Ig" kind="show" identifier="SearchSegue" id="aKo-Fk-da0"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title of Song" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nAP-mT-rWz">
+                                <rect key="frame" x="81" y="318" width="212" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="nAP-mT-rWz" firstAttribute="centerX" secondItem="zz3-Ri-mHZ" secondAttribute="centerX" id="C9P-ud-ZLp"/>
-                            <constraint firstItem="1Rx-KG-Dv4" firstAttribute="centerX" secondItem="zz3-Ri-mHZ" secondAttribute="centerX" id="Ibb-Y6-Dji"/>
-                            <constraint firstItem="1Rx-KG-Dv4" firstAttribute="top" secondItem="ntg-ih-9mB" secondAttribute="bottom" constant="20" id="OEl-Gm-3jG"/>
-                            <constraint firstItem="ntg-ih-9mB" firstAttribute="centerY" secondItem="zz3-Ri-mHZ" secondAttribute="centerY" id="fN5-g2-Lfd"/>
-                            <constraint firstItem="nAP-mT-rWz" firstAttribute="leading" secondItem="J4u-g8-ZZw" secondAttribute="leading" constant="82" id="kcp-Nt-GZd"/>
-                            <constraint firstItem="nAP-mT-rWz" firstAttribute="top" secondItem="J4u-g8-ZZw" secondAttribute="top" constant="215" id="o0H-0C-jdg"/>
-                            <constraint firstItem="nAP-mT-rWz" firstAttribute="trailing" secondItem="ntg-ih-9mB" secondAttribute="trailing" id="vYe-LA-k4D"/>
-                            <constraint firstItem="nAP-mT-rWz" firstAttribute="leading" secondItem="ntg-ih-9mB" secondAttribute="leading" id="xur-Pf-9Es"/>
+                            <constraint firstItem="nAP-mT-rWz" firstAttribute="centerX" secondItem="1Rx-KG-Dv4" secondAttribute="centerX" id="0Re-Qt-dDT"/>
+                            <constraint firstItem="nAP-mT-rWz" firstAttribute="centerY" secondItem="zz3-Ri-mHZ" secondAttribute="centerY" id="Pc9-qy-oat"/>
+                            <constraint firstItem="nAP-mT-rWz" firstAttribute="centerX" secondItem="zz3-Ri-mHZ" secondAttribute="centerX" id="fMT-FA-aFf"/>
+                            <constraint firstItem="nAP-mT-rWz" firstAttribute="leading" secondItem="J4u-g8-ZZw" secondAttribute="leading" constant="81" id="j0C-Pp-drD"/>
+                            <constraint firstItem="1Rx-KG-Dv4" firstAttribute="top" secondItem="nAP-mT-rWz" secondAttribute="bottom" constant="21" id="wz5-c0-K1E"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="J4u-g8-ZZw"/>
                     </view>
@@ -196,7 +196,6 @@
                     <connections>
                         <outlet property="qTextField" destination="nAP-mT-rWz" id="Um3-xF-jvF"/>
                         <outlet property="searchButton" destination="1Rx-KG-Dv4" id="sc6-Hq-PL1"/>
-                        <outlet property="typeTextField" destination="ntg-ih-9mB" id="Tlb-xE-wc8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X0H-mE-vFb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -230,8 +229,20 @@
                             <outlet property="delegate" destination="ObA-MV-2Ig" id="flz-xJ-Sjq"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="KRI-5T-za3"/>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="hVg-EO-hr8" id="Pbf-Hx-6II"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8p5-GO-B33" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="hVg-EO-hr8">
+                    <connections>
+                        <outlet property="delegate" destination="ObA-MV-2Ig" id="Fod-XU-INv"/>
+                        <outlet property="searchContentsController" destination="ObA-MV-2Ig" id="BUW-Xt-tXe"/>
+                        <outlet property="searchResultsDataSource" destination="ObA-MV-2Ig" id="oDV-3z-xRt"/>
+                        <outlet property="searchResultsDelegate" destination="ObA-MV-2Ig" id="owO-bR-6gh"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="1618.4000000000001" y="-495.20239880059972"/>
         </scene>
@@ -244,7 +255,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wqE-kX-Jtb">
-                                <rect key="frame" x="0.0" y="8" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="7.5" width="375" height="667"/>
                             </imageView>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C9H-9d-eaw">
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
@@ -283,11 +294,17 @@
                                             <state key="normal" title="Add To Playlist">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </state>
+                                            <connections>
+                                                <action selector="addButtonPressed:" destination="JZd-WW-6VR" eventType="touchUpInside" id="VyT-CF-fKn"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8DN-Sn-JlD">
                                             <rect key="frame" x="160" y="416" width="54" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <state key="normal" title="Preview"/>
+                                            <connections>
+                                                <action selector="playPreview:" destination="JZd-WW-6VR" eventType="touchUpInside" id="0Pi-Xx-awN"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <constraints>
@@ -420,11 +437,11 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ep9-f8-Ppp">
-                                                    <rect key="frame" x="160" y="6" width="55" height="30"/>
+                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ep9-f8-Ppp">
+                                                    <rect key="frame" x="16" y="0.0" width="343" height="44"/>
                                                     <state key="normal" title="Log Out"/>
                                                     <connections>
-                                                        <action selector="logOutPressed:" destination="oWT-YZ-4Hd" eventType="touchUpInside" id="Xw8-ms-Itd"/>
+                                                        <action selector="logOut:" destination="oWT-YZ-4Hd" eventType="touchUpInside" id="NbR-ui-AuY"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -497,7 +514,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="a5h-ag-2Xg" kind="relationship" relationship="rootViewController" id="ojE-pd-MAD"/>
+                        <segue destination="a5h-ag-2Xg" kind="relationship" relationship="rootViewController" id="bOf-HG-nXA"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2OZ-dO-hbP" userLabel="First Responder" sceneMemberID="firstResponder"/>

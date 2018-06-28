@@ -7,11 +7,44 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseDatabase
+import FirebaseUI
 
 class MusicTableViewController: UITableViewController {
+    
+    var ref: DatabaseReference!
+    
+    var auth = SPTAuth.defaultInstance()!
+    var session:SPTSession!
+    
+    var playlist = [MusicItem]()
+    var track: Int = 0
+    
+    func fetchMusic() {
+        ref = Database.database().reference()
+        let uid = Auth.auth().currentUser?.uid
+        ref.child("playlist").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
+            // loop maken om elke id langs te gaan
+            let value = snapshot.value as? NSDictionary
+            // naam van nummer en spotify id ophalen
+        })
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "PlayMusicSegue" {
+            let playerViewController = segue.destination as! PlayerViewController
+            let index = tableView.indexPathForSelectedRow!.row
+            playerViewController.track = index
+            playerViewController.playlist = self.playlist
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        fetchMusic()
+        self.tableView.rowHeight = 44;
+        
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -34,18 +67,16 @@ class MusicTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return playlist.count
     }
 
-    /*
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        // Retrieve name from result item
+        //        cell.textLabel?.text = playlist[indexPath].name
         return cell
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.

@@ -7,11 +7,15 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseCore
+import FirebaseAuth
+import HTMLString
+import Alamofire
 
-class ResultTableViewController: UITableViewController {
+class ResultTableViewController: UITableViewController, UISearchBarDelegate {
     
     var results = [TrackItem]()
-    var type: String = ""
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
@@ -22,15 +26,22 @@ class ResultTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         // Retrieve name from result item
-//        cell.textLabel?.text = results[indexPath].shared.name 
+//        cell.textLabel?.text = results[index].name
         return cell
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "TrackItemSegue" {
+            let itemViewController = segue.destination as! ItemViewController
+            let index = tableView.indexPathForSelectedRow!.row
+//            itemViewController.track = results[index]
+        }
     }
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
         print(results)
-        print(type)
         
 //        nameLabel.text =
 

@@ -7,8 +7,13 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseUI
+import FirebaseDatabase
 
 class ItemViewController: UIViewController {
+    
+    var ref: DatabaseReference!
     
     // MARK: - View Variables
     @IBOutlet weak var mainImage: UIImageView!
@@ -17,6 +22,24 @@ class ItemViewController: UIViewController {
     @IBOutlet weak var artistLabel: UILabel!
     @IBOutlet weak var previewButton: UIButton!
     @IBOutlet weak var addButton: UIButton!
+    
+//    var track = TrackItem()
+    
+    @IBAction func addButtonPressed(_ sender: Any) {
+//        let ref = Database.database().reference()
+//        let uid = Auth.auth().currentUser?.uid
+//        let addLatChild = ref.child("playlist").child(uid!).child(track.name)
+//        addLatChild.setValue(track.id)
+    }
+    
+    @IBAction func playPreview(_ sender: UIButton) {
+//        let preview = track.preview_uri
+//        self.player?.playSpotifyURI(preview, startingWith: 0, startingWithPosition: 0, callback: { (error) in
+//            if (error != nil) {
+//                print("playing!")
+//            })
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()

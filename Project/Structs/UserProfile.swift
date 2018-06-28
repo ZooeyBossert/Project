@@ -11,7 +11,7 @@ import Foundation
 struct UserProfile: Codable {
     static var shared: UserProfile?
     var id: String
-    var images: ImageObject
+    var images: [ImageObject]
     
     enum CodingKeys: String, CodingKey {
         case id

@@ -11,21 +11,78 @@ import GoogleMaps
 import Firebase
 import FirebaseDatabase
 
-class ConnectionsViewController: UIViewController {
+class ConnectionsViewController: UIViewController, CLLocationManagerDelegate {
+    
+    var latitude: Double = 0.0
+    var longitude: Double = 0.0
+    
+    var locationManager:CLLocationManager!
+    
+    var ref: DatabaseReference!
+    var username: String = ""
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        getUsername()
+        determineMyCurrentLocation()
+    }
+    
+    func determineMyCurrentLocation() {
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestAlwaysAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.startUpdatingLocation()
+            //locationManager.startUpdatingHeading()
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let userLocation:CLLocation = locations[0] as CLLocation
+        
+        // Update Database
+        let ref = Database.database().reference()
+        let uid = Auth.auth().currentUser?.uid
+        self.latitude = userLocation.coordinate.latitude
+        self.longitude = userLocation.coordinate.latitude
+        let addLatChild = ref.child("users").child(uid!).child("latitude")
+        addLatChild.setValue(self.latitude)
+        let addLongChild = ref.child("users").child(uid!).child("longitude")
+        addLongChild.setValue(self.longitude)
+        
+        print("user latitude = \(userLocation.coordinate.latitude)")
+        print("user longitude = \(userLocation.coordinate.latitude)")
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error)
+    {
+        print("Error \(error)")
+    }
     
     override func loadView() {
         // Create a GMSCameraPosition that tells the map to display the
         // coordinate -33.86,151.20 at zoom level 6.
-        let camera = GMSCameraPosition.camera(withLatitude: 52.3702, longitude: 4.8952, zoom: 11.0)
+        let camera = GMSCameraPosition.camera(withLatitude: self.latitude, longitude: self.longitude, zoom: 15.0)
         let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
         view = mapView
         
         // Creates a marker in the center of the map. make marker for friends en dat je kan klikken
         let marker = GMSMarker()
-        marker.position = CLLocationCoordinate2D(latitude: -33.86, longitude: 151.20)
-        marker.title = "Sydney"
-        marker.snippet = "Australia"
+        marker.position = CLLocationCoordinate2D(latitude: self.latitude, longitude: self.latitude)
+        marker.title = self.username
         marker.map = mapView
+    }
+    
+    func getUsername() {
+        print("update useername")
+        ref = Database.database().reference()
+        let uid = Auth.auth().currentUser?.uid
+        ref.child("users").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
+            let value = snapshot.value as? NSDictionary
+            self.username = value?["username"] as? String ?? ""
+        })
     }
     
 //    // Create Markers
