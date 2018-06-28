@@ -24,6 +24,10 @@ the search screen) and play music (from the music screen)! The friends screen sh
 
 - Friends: ConnectionsViewController
 
+### Structures
+TopStruct, Tracks, TrackItem, AlbumItem, ArtistItem, ImageObject and ExternalURL. These structs were made and used to store the data 
+retrieved from the Spotify API. 
+
 ### Firebase
 - Users (ID): username, latitude, longitude
 - Playlist (ID): tracks(id, name, artist, images)
@@ -41,7 +45,14 @@ of Silent Disco App, so that you and your friends could listen to the same music
 such a difficult task that even Apple had trouble fixing it. Let alone a rookie with a 4 weeks to create and finish the app. So along the 
 way I created, with the help of the TA's and other students, the idea as described in the README.md. 
 
-The first challenge was actually the biggest and is still a challenge. SoundCloud is currently not processing any application requests, due to the high amount of requests. Therefor I decided to use the Spotify API. However this API is still in beta version and the information on how to use the API is not always very clear. This together with my talent to sometimes overlook things, made it a very long journey to implement and use the API, till the very last day.
+The first challenge was actually the biggest and is still a challenge. SoundCloud is currently not processing any application requests, 
+due to the high amount of requests. Therefor I decided to use the Spotify API. However this API is still in beta version and the 
+information on how to use the API is not always very clear. This together with my talent to misspell things, made it a very long journey 
+to implement and use the API, till the very last day.
+
+Every challenge after the first had something to do with the Spotify API. As I mentioned before the information was not much. However with 
+help from the TA's, there was always a solutions. The end result is not what I hoped for, but I'm still proud! I am not the best in 
+programming and to make an app on your own is pretty cool! 
 
 ## Further Development 
 
