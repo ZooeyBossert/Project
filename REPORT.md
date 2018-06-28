@@ -2,14 +2,14 @@
 
 ## Description
 
-## Design
-
-The design was meant to be as described in the solution of the README.md. However due to time I had to cancel the share function, making 
+The app was meant to be as described in the solution of the README.md. However due to time I had to cancel the share function, making 
 multiple playlists and being able to look at other profiles. With the app you can search music, add songs to your library and search 
 friends. 
 
 You first login/create an account. After that you go to settings to login to Spotify, to get a access token. After that you can search (at
 the search screen) and play music (from the music screen)! The friends screen shows you a map with markers of other users. 
+
+## Design
 
 ### Files
 
