@@ -14,4 +14,4 @@ These problems can all be solved with Musica (not the final name) App! With this
 For the music the API of Spotify will be used. For saving the song Firebase will be used. 
 
 ## Example Sketch
-![](doc/designdoc.png)
+![](doc/finalDesign.png)
