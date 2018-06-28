@@ -38,3 +38,10 @@ way I created, with the help of the TA's and other students, the idea as describ
 The first challenge was actually the biggest and is still a challenge. SoundCloud is currently not processing any application requests, due to the high amount of requests. Therefor I decided to use the Spotify API. However this API is still in beta version and the information on how to use the API is not always very clear. This together with my talent to sometimes overlook things, made it a very long journey to implement and use the API, till the very last day.
 
 ## Further Development 
+
+To develop the app further I would create the other features (make multiple playlists, see other user's playlist and share/create 
+playlists together). And to really take it to the next step I think a chat function would be amazing (not like WhatsApp chat more like the 
+Snapchat chat). With these features it is a fun way to communicate with friends and enjoy music. The app would be a combination of Spotify 
+and Snapchat.
+
+
