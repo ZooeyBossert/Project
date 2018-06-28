@@ -7,34 +7,15 @@
 ### Files
 
 #### Classes
-- ViewController (Login)
+- Login: ViewController, TabBarViewController
 
-- MusicTableViewController 
+- Music: MusicTableViewController, PlayerViewController
 
-- PlayerViewController
+- Setting: SettingsViewController
 
-- SettingsViewController
+- Search: SearchViewController, ResultTableViewController, ItemViewController
 
-- SearchViewController
-
-- ResultTableViewController
-
-- ItemViewController
-
-- ConnectionsViewController
-
-• MusicItem: name, artist, album, year, ID
-
-#### Functions
--	updateUI()
--	tableView()
-- playing music
--	prepare for next screen
-- displaying list of music
-- making a playlist/ saving songs
-- displaying friends
-- making a account
-- share a playlist
+- Friends: ConnectionsViewController
 
 ### Firebase
 - Users (ID): username, latitude, longitude
