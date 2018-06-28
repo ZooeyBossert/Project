@@ -28,6 +28,12 @@ the search screen) and play music (from the music screen)! The friends screen sh
 - Users (ID): username, latitude, longitude
 - Playlist (ID): tracks(id, name, artist, images)
 
+### Functions
+
+The Firebase login connects the user to the Firebase database. By logging in to Spotify a session starts and a access token is given. In
+the session the AudioController of Spotify can be used and with the access token the search function can be used and there is access to 
+the user's information. The searched track have a lot of info, but only the neccessary variables are saved in the database for use. 
+
 ## Challenges
 
 I was very excited to create my own app, but the first idea was created by too much excitement. The original idea was to create some kind
