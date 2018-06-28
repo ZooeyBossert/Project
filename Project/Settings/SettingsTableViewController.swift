@@ -14,9 +14,9 @@ import FirebaseUI
 
 class SettingsTableViewController: UITableViewController, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamingDelegate {
     
+    //MARK: - Variables
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var profilePicture: UIImageView!
-    @IBOutlet weak var logOutButton: UIButton!
     
     var ref: DatabaseReference!
     
@@ -26,20 +26,16 @@ class SettingsTableViewController: UITableViewController, SPTAudioStreamingPlayb
     var player: SPTAudioStreamingController?
     var loginUrl: URL?
     var user = SPTUser()
+    
     // Define identifier
     let notificationName = Notification.Name("LoggedIn")
     
     var code: String = ""
-    
     var seen = false
     
     let baseURL = URL(string: "https://accounts.spotify.com/api/token")!
-
-//    // Log out of app
-//    @IBAction func logOutPressed(_ sender: Any) {
-//        FUIAuth.defaultAuthUI()?.signOut()
-//    }
     
+    // Setup for Spotify
     func setup() {
         auth.clientID = "fe10c4ee20a14c74b6192b7973395153"
         auth.redirectURL = URL(string: "Project://returnAfterLogin")
@@ -47,26 +43,21 @@ class SettingsTableViewController: UITableViewController, SPTAudioStreamingPlayb
             SPTAuthPlaylistModifyPrivateScope, SPTAuthUserReadPrivateScope]
         loginUrl = auth.spotifyWebAuthenticationURL()
     }
-
-//    @IBAction func logOut(_ sender: UIButton) {
-//        FUIAuth.defaultAuthUI()?.signOut()
-//    }
     
+    // Add access token to database
     func addToken(){
         let token = AppDelegate.accessToken
-        print(token)
         let uid = Auth.auth().currentUser?.uid
         let newToken = self.ref.child("users").child(uid!).child("access_token")
         newToken.setValue(token)
     }
     
+    // Login to Spotify
     @IBAction func LoginButtonPressed(_ sender: Any) {
         if seen == false {
             if UIApplication.shared.openURL(loginUrl!) {
                 seen = true
                 if auth.canHandle(auth.redirectURL) {
-                    print(auth.redirectURL)
-                    // code van ontvangen uri opslaan en als state error geven melding
                 }
             }
         } else {
@@ -74,37 +65,7 @@ class SettingsTableViewController: UITableViewController, SPTAudioStreamingPlayb
         }
     }
     
-//    func fetchImage() {
-//        print("start fetch")
-//        let imageURL = URL(string: "https://api.spotify.com/v1/me")!
-//        var request = URLRequest(url: imageURL)
-//        request.httpMethod = "GET"
-//        request.addValue("application/json", forHTTPHeaderField: "Accept")
-//        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-//        request.addValue("Bearer \(AppDelegate.accessToken))", forHTTPHeaderField: "Autherization")
-//        print("request: \(request)")
-//        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-//            let jsonDecoder = JSONDecoder()
-//            if let data = data,
-//                let userProfile = try? jsonDecoder.decode(UserProfile.self, from: data) {
-//                UserProfile.shared = userProfile
-//                print(userProfile)
-//                let image = userProfile.images
-//                print(image)
-////             self.profilePicture.image = image as
-//            }
-//        }
-//        task.resume()
-//    }
-    
-    func fetchImage(authSession:SPTSession){
-        if user == SPTUser(){
-            print(user)
-            let images = user.images
-            print(images)
-        }
-    }
-    
+    // Keep track if user is logged in
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if seen == true {
@@ -114,20 +75,16 @@ class SettingsTableViewController: UITableViewController, SPTAudioStreamingPlayb
         }
     }
     
+    // Update username label
     func updateUsername() {
-        print("update useername")
         ref = Database.database().reference()
-        print(ref)
         let uid = Auth.auth().currentUser?.uid
-        print(uid)
         ref.child("users").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as? NSDictionary
             let username = value?["username"] as? String ?? ""
             self.nameLabel.text = username
-            print(username)
         })
     }
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -149,10 +106,7 @@ class SettingsTableViewController: UITableViewController, SPTAudioStreamingPlayb
             let firstTimeSession = NSKeyedUnarchiver.unarchiveObject(with: sessionDataObj) as! SPTSession
             self.session = firstTimeSession
             initializePlayer(authSession: session)
-            print("resuest token")
             addToken()
-            print("fetch image")
-            fetchImage(authSession: session)
         }
     }
     

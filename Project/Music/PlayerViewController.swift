@@ -10,22 +10,20 @@ import UIKit
 
 class PlayerViewController: UIViewController {
     
-    // Variables to play music
+    // MARK: - Variables
     var auth = SPTAuth.defaultInstance()!
     var session: SPTSession!
     var player: SPTAudioStreamingController?
+    
     // variablen track en playlist maken en variablen van currentsong
     var track: Int = 0
-    var playlist = [MusicItem]()
+    var playlist = [TrackItem]()
     var currentSong: Int = 0
     
-    // MARK: - View Variables
     @IBOutlet weak var musicImage: UIImageView!
     @IBOutlet weak var playPauseButton: UIButton!
     @IBOutlet weak var forwardButton: UIButton!
     @IBOutlet weak var reverseButton: UIButton!
-    
-    // TODO: - van album image halen om te gebruiken (ook voor itemcontroller doen!!)
     
     var isPlaying: Bool = true {
         didSet {
@@ -39,6 +37,7 @@ class PlayerViewController: UIViewController {
         }
     }
     
+    // MARK: - Functions
     @IBAction func playButtonPressed(_ sender: Any) {
         if isPlaying == false{
             let musicItem = playlist[track]
@@ -86,6 +85,7 @@ class PlayerViewController: UIViewController {
         })
     }
     
+    // Initialize Spotify player
     func initializePlayer(authSession:SPTSession){
         if self.player == nil {
             self.player = SPTAudioStreamingController.sharedInstance()
@@ -96,7 +96,7 @@ class PlayerViewController: UIViewController {
         }
     }
 
-    
+    // create buttons
     override func viewDidLoad() {
         super.viewDidLoad()
         

@@ -1,49 +1,69 @@
 //
-//  ResultTableViewController.swift
+//  MusicTableViewController.swift
 //  Project
 //
-//  Created by Zooey Bossert on 07-06-18.
+//  Created by Zooey Bossert on 06-06-18.
 //  Copyright © 2018 Zooey Bossert. All rights reserved.
 //
 
 import UIKit
 import Firebase
-import FirebaseCore
-import FirebaseAuth
-import HTMLString
-import Alamofire
+import FirebaseDatabase
+import FirebaseUI
 
-class ResultTableViewController: UITableViewController, UISearchBarDelegate {
+class MusicTableViewController: UITableViewController {
     
-    var results = [TrackItem]()
+    // MARK: - Variables
+    var ref: DatabaseReference!
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return results.count
-    }
-     
-    // creating enough cells
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        // Retrieve name from result item
-//        cell.textLabel?.text = results[index].name
-        return cell
+    var auth = SPTAuth.defaultInstance()!
+    var session:SPTSession!
+    
+    var playlist = [TrackItem]()
+    var track: Int = 0
+    var trackItem: TrackItem!
+    var artists: [String] = []
+    
+    // MARK: - Functions
+    
+    // Fetch music from databse
+    func fetchMusic() {
+        ref = Database.database().reference()
+        let uid = Auth.auth().currentUser?.uid
+        let playlist = ref.child("playlist").child(uid!)
+        playlist.observeSingleEvent(of: .value, with: { (snapshot) in
+//                 loop maken om elke id langs te gaan
+            let enumerator = snapshot.children
+            while let rest = enumerator.nextObject() as? DataSnapshot {
+                let value = rest.value as! NSDictionary
+                let name = value["name"] as! String
+                self.trackItem.name = name
+                let id = value["id"] as! String
+                self.trackItem.id = id
+                let artist = value["artists"] as! [String]
+                self.artists = artist
+                let uri = value["uri"] as! String
+                self.trackItem.uri = uri
+                
+                self.playlist.append(self.trackItem)
+            }
+        })
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "TrackItemSegue" {
-            let itemViewController = segue.destination as! ItemViewController
+        if segue.identifier == "PlayMusicSegue" {
+            let playerViewController = segue.destination as! PlayerViewController
             let index = tableView.indexPathForSelectedRow!.row
-//            itemViewController.track = results[index]
+            playerViewController.track = index
+            playerViewController.playlist = self.playlist
         }
     }
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(results)
+        fetchMusic()
+        self.tableView.rowHeight = 44;
         
-//        nameLabel.text =
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -61,18 +81,22 @@ class ResultTableViewController: UITableViewController, UISearchBarDelegate {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 100
+        return 0
     }
 
-    /*
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of rows
+        return playlist.count
+    }
+
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        // Retrieve name from result item
+        let track = playlist[indexPath.row]
+        cell.textLabel?.text = track.name
         return cell
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.
@@ -90,7 +114,7 @@ class ResultTableViewController: UITableViewController, UISearchBarDelegate {
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }
+        }    
     }
     */
 

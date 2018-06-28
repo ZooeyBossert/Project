@@ -1,50 +1,49 @@
 //
-//  MusicTableViewController.swift
+//  ResultTableViewController.swift
 //  Project
 //
-//  Created by Zooey Bossert on 06-06-18.
+//  Created by Zooey Bossert on 07-06-18.
 //  Copyright © 2018 Zooey Bossert. All rights reserved.
 //
 
 import UIKit
 import Firebase
-import FirebaseDatabase
-import FirebaseUI
+import FirebaseCore
+import FirebaseAuth
+import HTMLString
+import Alamofire
 
-class MusicTableViewController: UITableViewController {
+class ResultTableViewController: UITableViewController, UISearchBarDelegate {
     
-    var ref: DatabaseReference!
-    
-    var auth = SPTAuth.defaultInstance()!
-    var session:SPTSession!
-    
-    var playlist = [MusicItem]()
-    var track: Int = 0
-    
-    func fetchMusic() {
-        ref = Database.database().reference()
-        let uid = Auth.auth().currentUser?.uid
-        ref.child("playlist").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
-            // loop maken om elke id langs te gaan
-            let value = snapshot.value as? NSDictionary
-            // naam van nummer en spotify id ophalen
-        })
+    // Recieving data from segue
+    var results = [TrackItem]()
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return results.count
     }
-    
+
+    // Creating enough cells
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        // Retrieve name from result item
+        let trackItem = results[indexPath.row]
+        cell.textLabel?.text = trackItem.name
+             return cell
+    }
+
+    // Prepare next segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "PlayMusicSegue" {
-            let playerViewController = segue.destination as! PlayerViewController
+        if segue.identifier == "TrackItemSegue" {
+            let itemViewController = segue.destination as! ItemViewController
             let index = tableView.indexPathForSelectedRow!.row
-            playerViewController.track = index
-            playerViewController.playlist = self.playlist
+            itemViewController.track = results[index]
         }
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchMusic()
-        self.tableView.rowHeight = 44;
         
+//        nameLabel.text =
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -62,21 +61,18 @@ class MusicTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 100
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return playlist.count
-    }
-
-
+    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        // Retrieve name from result item
-        //        cell.textLabel?.text = playlist[indexPath].name
+        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+
+        // Configure the cell...
+
         return cell
     }
+    */
 
     /*
     // Override to support conditional editing of the table view.
@@ -94,7 +90,7 @@ class MusicTableViewController: UITableViewController {
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        }
     }
     */
 

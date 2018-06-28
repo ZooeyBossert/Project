@@ -9,6 +9,7 @@
 import Foundation
 
 struct ImageObject: Codable {
+    static var shared: ImageObject?
     var height: Int
     var url : String
     var width: Int

@@ -13,6 +13,7 @@ import FirebaseDatabase
 
 class ConnectionsViewController: UIViewController, CLLocationManagerDelegate {
     
+    //MARK: - Variables
     var latitude: Double = 0.0
     var longitude: Double = 0.0
     
@@ -21,12 +22,14 @@ class ConnectionsViewController: UIViewController, CLLocationManagerDelegate {
     var ref: DatabaseReference!
     var username: String = ""
     
+    //MARK: - Functions
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         getUsername()
         determineMyCurrentLocation()
     }
     
+    // Functions from location manager
     func determineMyCurrentLocation() {
         locationManager = CLLocationManager()
         locationManager.delegate = self
@@ -51,9 +54,7 @@ class ConnectionsViewController: UIViewController, CLLocationManagerDelegate {
         addLatChild.setValue(self.latitude)
         let addLongChild = ref.child("users").child(uid!).child("longitude")
         addLongChild.setValue(self.longitude)
-        
-        print("user latitude = \(userLocation.coordinate.latitude)")
-        print("user longitude = \(userLocation.coordinate.latitude)")
+
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error)
@@ -61,6 +62,7 @@ class ConnectionsViewController: UIViewController, CLLocationManagerDelegate {
         print("Error \(error)")
     }
     
+    // Load mapview
     override func loadView() {
         // Create a GMSCameraPosition that tells the map to display the
         // coordinate -33.86,151.20 at zoom level 6.
@@ -68,15 +70,28 @@ class ConnectionsViewController: UIViewController, CLLocationManagerDelegate {
         let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
         view = mapView
         
-        // Creates a marker in the center of the map. make marker for friends en dat je kan klikken
-        let marker = GMSMarker()
-        marker.position = CLLocationCoordinate2D(latitude: self.latitude, longitude: self.latitude)
-        marker.title = self.username
-        marker.map = mapView
+        // Get user from database
+        let ref = Database.database().reference()
+        let user = ref.child("users")
+        user.observeSingleEvent(of: .value, with: { (snapshot) in
+            let enumerator = snapshot.children
+            while let rest = enumerator.nextObject() as? DataSnapshot {
+                let value = rest.value as! NSDictionary
+                let username = value["username"] as! String
+                let lat = value["latitude"] as! Double
+                let long = value["longitude"] as! Double
+        
+                // create marker for users
+                let marker = GMSMarker()
+                marker.position = CLLocationCoordinate2D(latitude: lat, longitude: long)
+                marker.title = username
+                marker.map = mapView
+            }
+        })
     }
     
+    // Get username from database
     func getUsername() {
-        print("update useername")
         ref = Database.database().reference()
         let uid = Auth.auth().currentUser?.uid
         ref.child("users").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in

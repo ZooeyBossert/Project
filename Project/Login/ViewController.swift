@@ -30,6 +30,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
 
     }
     
+    // Make sure view appears otherwise perform segue
     override func viewDidAppear(_ animated: Bool) {
         if seen == false {
             present(authViewController!, animated: true, completion: nil)
@@ -46,6 +47,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
         determineMyCurrentLocation()
     }
     
+    // Get current location with location manager
     func determineMyCurrentLocation() {
         locationManager = CLLocationManager()
         locationManager.delegate = self
@@ -58,6 +60,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
         }
     }
     
+    // Location manager
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let userLocation:CLLocation = locations[0] as CLLocation
         
@@ -77,6 +80,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
         print("Error \(error)")
     }
     
+    // Save user in database
     func userSave() {
         if Auth.auth().currentUser != nil {
             ref = Database.database().reference()
@@ -84,9 +88,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate{
             let username = Auth.auth().currentUser?.displayName
             let addNameChild = ref.child("users").child(uid!).child("username")
             addNameChild.setValue(username!)
-        } else {
-            //iets doen
-        }
+        } 
     }
     
 

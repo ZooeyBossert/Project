@@ -9,27 +9,10 @@
 import Foundation
 
 struct AlbumItem: Codable {
-    var album_type: String
-    var artists: [String] // ook lijst van simplefied objecten
-    var external_urls: [ExternalURL]
-    var href: String
-    var id: String
-    //var images: [Object] hoe dit??
+    static var shared: AlbumItem?
+
+    var images: [ImageObject]
     var name: String
-    var type: String
-    var uri: String
-    
-    enum CodingKeys: String, CodingKey {
-        case album_type
-        case artists
-        case external_urls
-        case href
-        case id
-        //case images
-        case name
-        case type
-        case uri
-    }
 }
 
 struct AlbumItems: Codable {

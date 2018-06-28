@@ -285,39 +285,38 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wPR-jj-Arr">
-                                            <rect key="frame" x="8" y="503" width="359" height="43"/>
-                                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="43" id="x6I-3L-DdR"/>
-                                            </constraints>
-                                            <state key="normal" title="Add To Playlist">
+                                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8DN-Sn-JlD">
+                                            <rect key="frame" x="160" y="416" width="54" height="30"/>
+                                            <connections>
+                                                <action selector="playPreview:" destination="JZd-WW-6VR" eventType="touchUpInside" id="0Pi-Xx-awN"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="084-uH-kY9">
+                                            <rect key="frame" x="10" y="516" width="355" height="30"/>
+                                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <state key="normal" title="Add To Music">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </state>
                                             <connections>
-                                                <action selector="addButtonPressed:" destination="JZd-WW-6VR" eventType="touchUpInside" id="VyT-CF-fKn"/>
-                                            </connections>
-                                        </button>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8DN-Sn-JlD">
-                                            <rect key="frame" x="160" y="416" width="54" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" title="Preview"/>
-                                            <connections>
-                                                <action selector="playPreview:" destination="JZd-WW-6VR" eventType="touchUpInside" id="0Pi-Xx-awN"/>
+                                                <action selector="addButtonPressed:" destination="JZd-WW-6VR" eventType="touchUpInside" id="sNy-1q-aaA"/>
                                             </connections>
                                         </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="kMT-n2-U6U" firstAttribute="centerX" secondItem="51e-KV-1kp" secondAttribute="centerX" id="3bC-QM-5ob"/>
                                         <constraint firstItem="7Sf-F7-2i6" firstAttribute="top" secondItem="kMT-n2-U6U" secondAttribute="bottom" constant="39" id="729-3p-pKO"/>
+                                        <constraint firstAttribute="trailing" secondItem="7Sf-F7-2i6" secondAttribute="trailing" constant="139" id="A9B-9x-8nt"/>
+                                        <constraint firstItem="084-uH-kY9" firstAttribute="leading" secondItem="51e-KV-1kp" secondAttribute="leading" constant="10" id="GOK-3Y-ztm"/>
                                         <constraint firstItem="kMT-n2-U6U" firstAttribute="top" secondItem="51e-KV-1kp" secondAttribute="top" constant="56" id="HDX-Mm-cSs"/>
+                                        <constraint firstItem="8DN-Sn-JlD" firstAttribute="leading" secondItem="51e-KV-1kp" secondAttribute="leading" constant="160" id="Ham-NZ-5ak"/>
                                         <constraint firstItem="kMT-n2-U6U" firstAttribute="centerX" secondItem="7Sf-F7-2i6" secondAttribute="centerX" id="LEP-Ap-gGi"/>
                                         <constraint firstItem="kMT-n2-U6U" firstAttribute="leading" secondItem="51e-KV-1kp" secondAttribute="leading" constant="68" id="PCa-4U-hKU"/>
+                                        <constraint firstItem="084-uH-kY9" firstAttribute="top" secondItem="dJ7-MH-2kz" secondAttribute="bottom" constant="134" id="a75-KY-nAz"/>
+                                        <constraint firstAttribute="trailing" secondItem="084-uH-kY9" secondAttribute="trailing" constant="10" id="cR9-ht-g2y"/>
+                                        <constraint firstItem="7Sf-F7-2i6" firstAttribute="leading" secondItem="51e-KV-1kp" secondAttribute="leading" constant="139" id="fPQ-qs-8Ao"/>
+                                        <constraint firstAttribute="trailing" secondItem="8DN-Sn-JlD" secondAttribute="trailing" constant="161" id="fyj-ZC-hYB"/>
                                         <constraint firstItem="7Sf-F7-2i6" firstAttribute="centerX" secondItem="dJ7-MH-2kz" secondAttribute="centerX" id="gb5-TN-l69"/>
                                         <constraint firstItem="dJ7-MH-2kz" firstAttribute="top" secondItem="7Sf-F7-2i6" secondAttribute="bottom" constant="8" symbolic="YES" id="lsu-IX-S4s"/>
-                                        <constraint firstItem="wPR-jj-Arr" firstAttribute="leading" secondItem="51e-KV-1kp" secondAttribute="leadingMargin" id="lta-UO-VCt"/>
-                                        <constraint firstItem="dJ7-MH-2kz" firstAttribute="centerX" secondItem="wPR-jj-Arr" secondAttribute="centerX" id="xXn-8y-RVt"/>
-                                        <constraint firstItem="wPR-jj-Arr" firstAttribute="bottom" secondItem="51e-KV-1kp" secondAttribute="bottomMargin" id="zQn-r2-9Qy"/>
                                     </constraints>
                                 </view>
                                 <blurEffect style="light"/>
@@ -337,7 +336,7 @@
                         <viewLayoutGuide key="safeArea" id="IxB-3L-VVT"/>
                     </view>
                     <connections>
-                        <outlet property="addButton" destination="wPR-jj-Arr" id="8He-SZ-j3c"/>
+                        <outlet property="addButton" destination="084-uH-kY9" id="yPb-po-tIy"/>
                         <outlet property="artistLabel" destination="dJ7-MH-2kz" id="w3p-U1-FPc"/>
                         <outlet property="backgroundImage" destination="wqE-kX-Jtb" id="Bea-oI-Lh5"/>
                         <outlet property="mainImage" destination="kMT-n2-U6U" id="Skg-Hb-Gnv"/>
@@ -436,19 +435,6 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="sdU-rg-A3b" id="Xye-fF-VRs">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ep9-f8-Ppp">
-                                                    <rect key="frame" x="16" y="0.0" width="343" height="44"/>
-                                                    <state key="normal" title="Log Out"/>
-                                                    <connections>
-                                                        <action selector="logOut:" destination="oWT-YZ-4Hd" eventType="touchUpInside" id="NbR-ui-AuY"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="ep9-f8-Ppp" firstAttribute="centerY" secondItem="Xye-fF-VRs" secondAttribute="centerY" id="XgH-IN-ewU"/>
-                                                <constraint firstItem="ep9-f8-Ppp" firstAttribute="centerX" secondItem="Xye-fF-VRs" secondAttribute="centerX" id="cOi-0u-7h1"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -461,7 +447,6 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Settings" id="c4j-cY-TPj"/>
                     <connections>
-                        <outlet property="logOutButton" destination="ep9-f8-Ppp" id="Isw-mi-5eM"/>
                         <outlet property="nameLabel" destination="STE-tI-PBc" id="b59-mU-jaa"/>
                         <outlet property="profilePicture" destination="93g-RD-VkC" id="MTv-NR-APc"/>
                     </connections>
