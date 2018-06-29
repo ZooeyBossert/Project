@@ -25,3 +25,7 @@ To stream and search music the Spotify API is used. For saving the songs and cre
 To use the app, you need a Spotify account! When opening the app you will be directed to login or create an account for the app. After 
 this you will be directed to the music screen. Go to setting to login to Spotify by clicking on the button. After login you can search and 
 play music on the app. Lookup other users locations by going to the friends screen.
+
+## Product Demo
+
+[a link](https://youtu.be/z2UrODYD5pY)
