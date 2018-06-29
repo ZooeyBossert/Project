@@ -26,6 +26,4 @@ To use the app, you need a Spotify account! When opening the app you will be dir
 this you will be directed to the music screen. Go to setting to login to Spotify by clicking on the button. After login you can search and 
 play music on the app. Lookup other users locations by going to the friends screen.
 
-## Product Demo
-
-[a link](https://youtu.be/z2UrODYD5pY)
+Watch the [product demo](https://youtu.be/z2UrODYD5pY) for further information about the use of the app.
